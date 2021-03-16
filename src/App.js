@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import LandingPage from './components/landingpage';
+import BrowserPage from './components/browser';
+import CalendarPage from './components/calendar';
+import MusicPage from './components/music';
+import NotepadPage from './components/notepad';
+import SettingsPage from './components/settings';
+import TimerPage from './components/timer';
 
-export default App;
+
+const Main = () => (
+  <Router>
+    <Route exact path='/' component={LandingPage}/>
+    <Route exact path='/browser' component={BrowserPage}/>
+    <Route exact path='/calendar' component={CalendarPage}/>
+    <Route exact path='/music' component={MusicPage}/>
+    <Route exact path='/notepad' component={NotepadPage}/>
+    <Route exact path='/settings' component={SettingsPage}/>
+    <Route exact path='/timer' component={TimerPage}/>
+  </Router>
+)
+
+export default Main;
