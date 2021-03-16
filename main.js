@@ -12,6 +12,9 @@ function createWindow () {
     }
   })
 
+  //Set window menu (top bar) visability to false
+  mainWindow.setMenuBarVisibility(false)
+
   // and load the index.html of the app.
   mainWindow.loadURL('http://localhost:3000')
 
