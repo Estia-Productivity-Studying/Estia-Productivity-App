@@ -147,8 +147,8 @@ class SettingsForm extends React.Component {
         <label>
           Change Username:
           <input
-            name="youtubeLink"
-            type="url"
+            name="username"
+            type="text"
             placeholder="New Username"
             value={this.state.username}
             onChange={this.handleInputChange}
@@ -158,10 +158,10 @@ class SettingsForm extends React.Component {
         <label>
           Change Password:
           <input
-            name="youtubeLink"
+            name="password"
             type="password"
             placeholder="New Password"
-            value={this.state.username}
+            value={this.state.password}
             onChange={this.handleInputChange}
           />
           <br />
