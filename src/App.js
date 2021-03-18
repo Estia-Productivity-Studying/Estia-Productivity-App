@@ -1,3 +1,4 @@
+import './App.css';
 import React from 'react';
 import {
   BrowserRouter as Router,
@@ -13,6 +14,7 @@ import MusicPage from './components/music';
 import NotepadPage from './components/notepad';
 import SettingsPage from './components/settings';
 import TimerPage from './components/timer';
+
 
 
 const Main = () => (
