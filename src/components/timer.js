@@ -14,14 +14,22 @@ const breakTimerTime = 0.5; //Get from database
 class Timer extends React.Component {
   constructor() {
     super();
-    this.state = { time: {}, seconds: studyTimerTime * 60 };
+    this.state = {
+      time: {},
+      seconds: studyTimerTime * 60,
+      isOn: false,
+      isPaused: false,
+    };
     this.timer = 0;
     this.startTimer = this.startTimer.bind(this);
     this.countDown = this.countDown.bind(this);
+    this.pauseTimer = this.pauseTimer.bind(this);
+    this.resetTimer = this.resetTimer.bind(this);
     this.currentTimer = "Study Timer";
   }
 
   secondsToTime(secs) {
+    //Converting seconds to hours, minutes, and seconds
     let hours = Math.floor(secs / (60 * 60));
 
     let divisor_for_minutes = secs % (60 * 60);
@@ -39,45 +47,103 @@ class Timer extends React.Component {
   }
 
   componentDidMount() {
+    //Run after render
     let timeLeftVar = this.secondsToTime(this.state.seconds);
     this.setState({ time: timeLeftVar });
   }
 
   startTimer() {
     this.timer = setInterval(this.countDown, 1000);
+    this.setState({
+      isOn: true,
+      isPaused: false,
+      time: this.secondsToTime(this.state.seconds), // Added for case when timer is reset and started again to prevent showing undefined for a second
+    });
   }
 
   countDown() {
-    // Remove one second, set state so a re-render happens.
+    // Decrementing one second for re-render
     let seconds = this.state.seconds - 1;
     this.setState({
       time: this.secondsToTime(seconds),
       seconds: seconds,
     });
 
-    // Check if we're at zero.
     if (seconds === 0) {
+      //If timer hits 0, switch to the next timer mode and restart timer at given time
       if (this.currentTimer === "Study Timer") {
         this.currentTimer = "Break Timer";
-        this.seconds = breakTimerTime * 60;
+        this.setState({
+          time: this.secondsToTime(seconds),
+          seconds: breakTimerTime * 60,
+        });
       } else {
         this.currentTimer = "Study Timer";
-        this.seconds = studyTimerTime * 60;
+        this.setState({
+          time: this.secondsToTime(seconds),
+          seconds: studyTimerTime * 60,
+        });
       }
       clearInterval(this.timer);
       this.startTimer();
     }
   }
 
+  pauseTimer() {
+    //Pauses timer. Timer can be unpaused with resume button or reset with reset button
+    this.setState({ isOn: false, isPaused: true });
+    clearInterval(this.timer);
+  }
+
+  resetTimer() {
+    //Resets the timer to its original state.
+    this.setState({ time: 0, isOn: false, isPaused: false });
+    this.currentTimer = "Study Timer";
+    this.setState({
+      seconds: studyTimerTime * 60,
+    });
+    clearInterval(this.timer);
+  }
+
   render() {
+    let hours =
+      this.state.time.h < 10 ? "0" + this.state.time.h : this.state.time.h;
+    let minutes =
+      this.state.time.m < 10 ? "0" + this.state.time.m : this.state.time.m;
+    let seconds =
+      this.state.time.s < 10 ? "0" + this.state.time.s : this.state.time.s;
+    let timer = this.state.isOn
+      ? hours + ":" + minutes + ":" + seconds
+      : this.state.isPaused
+      ? hours + ":" + minutes + ":" + seconds
+      : null;
+    let header = this.state.isOn
+      ? this.currentTimer + ": "
+      : this.state.isPaused
+      ? "Timer Paused: "
+      : "Start Study Timer?";
+    let start = this.state.isOn ? null : this.state.isPaused ? null : (
+      <button onClick={this.startTimer}>Start Timer</button>
+    );
+    let pause = this.state.isOn ? (
+      <button onClick={this.pauseTimer}>Pause</button>
+    ) : null;
+    let resume = this.state.isPaused ? (
+      <button onClick={this.startTimer}>Resume</button>
+    ) : null;
+    let reset = this.state.isPaused ? (
+      <button onClick={this.resetTimer}>Reset</button>
+    ) : null;
     return (
       <div>
         <h1>
-          {this.currentTimer}: {this.state.time.h}:{this.state.time.m}:
-          {this.state.time.s}
+          {header} {timer}
         </h1>
         <br />
-        <button onClick={this.startTimer}>Start</button>
+        {start}
+        {pause}
+        {resume}
+        {reset}
       </div>
     );
   }
