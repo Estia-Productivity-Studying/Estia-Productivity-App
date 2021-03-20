@@ -49,6 +49,9 @@ function BrowserPage() {
                     </Typography>
                     <Breadcrumbs aria-label="breadcrumb">
                         <Link color="inherit" href="/" onClick={handleClick}>
+                            Login
+                        </Link>
+                        <Link color="inherit" href="/landingpage" onClick={handleClick}>
                             Main Menu
                         </Link>
                         <Link color="inherit" href="/timer" onClick={handleClick}>
