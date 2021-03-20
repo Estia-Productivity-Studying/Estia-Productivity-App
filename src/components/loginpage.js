@@ -1,14 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from '@material-ui/core/Link';
-import {positions} from '@material-ui/system';
-import {borders} from '@material-ui/system'
-import { CenterFocusStrong } from '@material-ui/icons';
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
