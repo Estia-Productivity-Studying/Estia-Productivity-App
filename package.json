@@ -19,6 +19,7 @@
     "react-electron-web-view": "^2.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "validator": "^13.5.2",
     "wait-on": "^5.2.1",
     "web-vitals": "^1.0.1"
   },

@@ -7,37 +7,81 @@ import IconButton from '@material-ui/core/IconButton';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import TextField from '@material-ui/core/TextField';
 import Input from '@material-ui/core/Input';
+import validator from 'validator'
 
-// Function to handle clicks on breadcrumbs
 function handleClick(event) {
-  console.info('You clicked a breadcrumb.');
+    console.info('You clicked a breadcrumb.');
 }
 
-// Functions to handle clicks for web pages, back, forward, and reload
-function page_back(event){
-    const webview = document.querySelector('webview')
-    webview.goBack()
-}
-
-function page_forward(event){
-    const webview = document.querySelector('webview')
-    webview.goForward()
-}
-
-function page_reload(event){
-    const webview = document.querySelector('webview')
-    webview.reload()
-}
-
-// function to handle you press enter on the search bar
-function load_url(event){
-    if (event.key === 'Enter'){
-        const webview = document.querySelector('webview')
-        webview.loadURL("http://" + event.target.value)
+class BrowserWindow extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        //Get current settings from database
+        blacklist: [],
+      };
     }
-}
+      // Function to handle clicks on breadcrumbs
+    
+    // Functions to handle clicks for web pages, back, forward, and reload
+    page_back(event){
+        const webview = document.querySelector('webview')
+        webview.goBack()
+    }
+    
+    page_forward(event){
+        const webview = document.querySelector('webview')
+        webview.goForward()
+    }
+    
+    page_reload(event){
+        const webview = document.querySelector('webview')
+        webview.reload()
+    }
+    
+    // function to handle you press enter on the search bar
+    load_url(event){
+        if (event.key === 'Enter'){
+            if (validator.isURL("http://" + event.target.value)){
+                const webview = document.querySelector('webview')
+                webview.loadURL("http://" + event.target.value)
+            }
+            else if (validator.isURL(event.target.value)){
+                const webview = document.querySelector('webview')
+                webview.loadURL(event.target.value)
+            }
+        }
+    }
+
+    render() {
+        return (
+        <div style={{ display: 'flex', flex: 9.5, 'flex-flow': 'column' }}>
+            {/* Div for browser control buttons */}
+            <div style={{ flex: '0.1' }}>
+            <IconButton variant="outlined" size="small" onClick={ this.page_back }>
+                <ArrowBackIosIcon></ArrowBackIosIcon>
+            </IconButton>
+            <IconButton variant="outlined" size="small" onClick={ this.page_forward }>
+                <ArrowForwardIosIcon></ArrowForwardIosIcon>
+            </IconButton>
+            <IconButton variant="outlined" size="small" onClick={ this.page_reload }>
+                <RefreshIcon></RefreshIcon>
+            </IconButton>
+            {/* This is for the browser search bar */}
+            <Input 
+                onKeyDown={ this.load_url } 
+                id="url" 
+                label="url" 
+                variant="outlined" />
+            </div>
+            {/* Build in browser, uses webview from Electron */}
+            <webview id="foo" src="https://www.google.com/" style={{ flex: '9.9' }}></webview>
+        </div>
+        );
+      }
+    }
+
 
 function BrowserPage() {
     return (
@@ -71,26 +115,7 @@ function BrowserPage() {
                         </Link>
                     </Breadcrumbs>
                 </div>
-                {/* Div for browser control buttons */}
-                <div style={{ flex: '0.1'}}>
-                    <IconButton variant="outlined" size="small" onClick={ page_back }>
-                        <ArrowBackIosIcon></ArrowBackIosIcon>
-                    </IconButton>
-                    <IconButton variant="outlined" size="small" onClick={ page_forward }>
-                        <ArrowForwardIosIcon></ArrowForwardIosIcon>
-                    </IconButton>
-                    <IconButton variant="outlined" size="small" onClick={ page_reload }>
-                        <RefreshIcon></RefreshIcon>
-                    </IconButton>
-                    {/* This is for the browser search bar */}
-                    <Input 
-                        onKeyDown={ load_url } 
-                        id="url" 
-                        label="url" 
-                        variant="outlined" />
-                </div>
-                {/* Build in browser, uses webview from Electron */}
-                <webview id="foo" src="https://www.google.com/" style={{ flex: 9.0 }} allowpopups></webview>
+                <BrowserWindow/>
             </div>
             
         );
