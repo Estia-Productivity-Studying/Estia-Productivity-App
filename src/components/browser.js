@@ -51,7 +51,6 @@ class BrowserWindow extends React.Component {
             else if (validator.isURL(event.target.value)){
                 const webview = document.querySelector('webview')
                 webview.loadURL(event.target.value)
-
                 event.target.placeholder = ""
             }
             else{
