@@ -46,10 +46,17 @@ class BrowserWindow extends React.Component {
             if (validator.isURL("http://" + event.target.value)){
                 const webview = document.querySelector('webview')
                 webview.loadURL("http://" + event.target.value)
+                event.target.placeholder = ""
             }
             else if (validator.isURL(event.target.value)){
                 const webview = document.querySelector('webview')
                 webview.loadURL(event.target.value)
+
+                event.target.placeholder = ""
+            }
+            else{
+                event.target.value = ""
+                event.target.placeholder = "invalid url"
             }
         }
     }
