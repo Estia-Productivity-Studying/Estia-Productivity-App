@@ -35,7 +35,7 @@ function page_reload(event){
 function load_url(event){
     if (event.key === 'Enter'){
         const webview = document.querySelector('webview')
-        webview.loadURL('http://reddit.com/')
+        webview.loadURL("http://" + event.target.value)
     }
 }
 
@@ -83,7 +83,11 @@ function BrowserPage() {
                         <RefreshIcon></RefreshIcon>
                     </IconButton>
                     {/* This is for the browser search bar */}
-                    <Input onKeyDown={ load_url } id="url" label="url" variant="outlined" />
+                    <Input 
+                        onKeyDown={ load_url } 
+                        id="url" 
+                        label="url" 
+                        variant="outlined" />
                 </div>
                 {/* Build in browser, uses webview from Electron */}
                 <webview id="foo" src="https://www.google.com/" style={{ flex: 9.0 }} allowpopups></webview>
