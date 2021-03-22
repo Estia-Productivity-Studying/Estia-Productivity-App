@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from "@material-ui/core/Checkbox";
+import Grid from '@material-ui/core/Grid'
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
@@ -33,19 +34,22 @@ const UserNameBox =(TextField);
 function LoginPage() {
   return (
     <div>
+      <Grid item xs={4} style={{textAlign:"center"}}>
       <form className={UserNameBox} noValidate autoComplete="off">
         <TextField id="Username" label="Username" variant="filled"/>
         <TextField id="Password" label="Password" variant="filled"/>
       </form>
+      </Grid>
 
       <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
       />
-
+      <Grid item xs={4} style={{textAlign:"center"}}>
       <StyledSignButton variant="contained" color="primary">
         Sign In
       </StyledSignButton>
+      </Grid>
 
 
       <StyledSignButton variant="contained" color="primary" href="/landingpage" onClick={handleClick}>
