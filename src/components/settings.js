@@ -1,15 +1,5 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
-
-var warningTimeout;
-var warningBox = document.createElement("div");
-warningBox.className = "warning";
-
-function handleClick(event) {
-  console.info("You clicked a breadcrumb.");
-}
 
 class BlacklistedTable extends React.Component {
   constructor(props) {
