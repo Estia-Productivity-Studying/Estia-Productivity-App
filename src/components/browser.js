@@ -99,40 +99,8 @@ class BrowserWindow extends React.Component {
 
 function BrowserPage() {
     return (
-            <div className='browserDiv' style={{ display: 'flex', flexDirection: 'column'}}>
-                {/* Breadcrumbs div for the header */}
-                <div style={{ flex: 0.5 }}>
-                    <Typography variant="h6" component="h6">
-                        Browser:
-                    </Typography>
-                    <Breadcrumbs aria-label="breadcrumb">
-                        <Link color="inherit" href="/" onClick={handleClick}>
-                            Main Menu
-                        </Link>
-                        <Link color="inherit" href="/timer" onClick={handleClick}>
-                            Timer
-                        </Link>
-                        <Link color="inherit" href="/browser" onClick={handleClick}>
-                            Browser
-                        </Link>
-                        <Link color="inherit" href="/notepad" onClick={handleClick}>
-                            Notepad
-                        </Link>
-                        <Link color="inherit" href="/calendar" onClick={handleClick}>
-                            Calendar
-                        </Link>
-                        <Link color="inherit" href="/music" onClick={handleClick}>
-                            Music
-                        </Link>
-                        <Link color="inherit" href="/settings" onClick={handleClick}>
-                            Settings
-                        </Link>
-                    </Breadcrumbs>
-                </div>
-                <BrowserWindow/>
-            </div>
-            
-        );
+        <BrowserWindow />
+    );
 }
 
 export default BrowserPage;
