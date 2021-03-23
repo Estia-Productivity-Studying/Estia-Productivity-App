@@ -35,14 +35,6 @@ class Notepad extends React.Component {
 
   render() {
     return (
-
-        <div>
-        <Typography variant="h6" component="h6">
-            Notepad:
-        </Typography>
-        </div>
-        );
-
       <table>
         <tr>
           <h3>Notepad:</h3>
