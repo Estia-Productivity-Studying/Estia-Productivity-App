@@ -56,6 +56,7 @@ function MusicPage() {
                 Settings
             </Link>
         </Breadcrumbs>
+        <YoutubeEmbed embedId={embedId} />
         </div>
         );
 }
