@@ -59,6 +59,7 @@ return (
   <div className={classes.root}>
     <AppBar position="static" color="inherit">
       <Tabs value={selectedTab} onChange={handleChange}>
+        <Tab label="Logout" />
         <Tab label="Landing" />
         <Tab label="Browser" />
         <Tab label="Calendar" />
@@ -69,6 +70,9 @@ return (
       </Tabs>
     </AppBar>
 
+    <TabContainer id={0} active={selectedTab === 0}>
+      <LoginPage/>
+    </TabContainer>
     <TabContainer id={0} active={selectedTab === 0}>
       <LandingPage/>
     </TabContainer>

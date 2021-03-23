@@ -52,7 +52,7 @@ function Copyright() {
   }));
 
 
-function LandingPage() {
+export default function LoginPage() {
     const classes = useStyles();
     return (
         <div>
@@ -158,6 +158,3 @@ function LandingPage() {
         </div>
     );
 }
-
-
-export default LandingPage;
