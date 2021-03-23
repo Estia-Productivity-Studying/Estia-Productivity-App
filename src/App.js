@@ -73,25 +73,25 @@ return (
     <TabContainer id={0} active={selectedTab === 0}>
       <LoginPage/>
     </TabContainer>
-    <TabContainer id={0} active={selectedTab === 0}>
+    <TabContainer id={0} active={selectedTab === 1}>
       <LandingPage/>
     </TabContainer>
-    <TabContainer id={1} active={selectedTab === 1}>
+    <TabContainer id={1} active={selectedTab === 2}>
       <BrowserPage/>
     </TabContainer>
-    <TabContainer id={2} active={selectedTab === 2}>
+    <TabContainer id={2} active={selectedTab === 3}>
       <CalendarPage/>
     </TabContainer>
-    <TabContainer id={3} active={selectedTab === 3}>
+    <TabContainer id={3} active={selectedTab === 4}>
       <MusicPage/>
     </TabContainer>
-    <TabContainer id={3} active={selectedTab === 3}>
+    <TabContainer id={3} active={selectedTab === 5}>
       <NotepadPage/>
     </TabContainer>
-    <TabContainer id={4} active={selectedTab === 4}>
+    <TabContainer id={4} active={selectedTab === 6}>
       <TimerPage/>
     </TabContainer>
-    <TabContainer id={5} active={selectedTab === 5}>
+    <TabContainer id={5} active={selectedTab === 7}>
       <SettingsPage/>
     </TabContainer>
   </div>
