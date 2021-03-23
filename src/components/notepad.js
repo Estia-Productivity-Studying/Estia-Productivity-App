@@ -35,6 +35,14 @@ class Notepad extends React.Component {
 
   render() {
     return (
+
+        <div>
+        <Typography variant="h6" component="h6">
+            Notepad:
+        </Typography>
+        </div>
+        );
+
       <table>
         <tr>
           <h3>Notepad:</h3>
@@ -73,32 +81,6 @@ function NotepadPage() {
       <Typography variant="h6" component="h6">
         Notepad:
       </Typography>
-      <Breadcrumbs aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
-          Login
-        </Link>
-        <Link color="inherit" href="/landingpage" onClick={handleClick}>
-          Main Menu
-        </Link>
-        <Link color="inherit" href="/timer" onClick={handleClick}>
-          Timer
-        </Link>
-        <Link color="inherit" href="/browser" onClick={handleClick}>
-          Browser
-        </Link>
-        <Link color="inherit" href="/notepad" onClick={handleClick}>
-          Notepad
-        </Link>
-        <Link color="inherit" href="/calendar" onClick={handleClick}>
-          Calendar
-        </Link>
-        <Link color="inherit" href="/music" onClick={handleClick}>
-          Music
-        </Link>
-        <Link color="inherit" href="/settings" onClick={handleClick}>
-          Settings
-        </Link>
-      </Breadcrumbs>
       <Notepad />
     </div>
   );
