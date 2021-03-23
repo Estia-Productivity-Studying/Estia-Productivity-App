@@ -7,6 +7,7 @@ import {
   Link
 } from "react-router-dom";
 
+import LoginPage from './components/loginpage';
 import LandingPage from './components/landingpage';
 import BrowserPage from './components/browser';
 import CalendarPage from './components/calendar';
@@ -19,7 +20,8 @@ import TimerPage from './components/timer';
 
 const Main = () => (
   <Router>
-    <Route exact path='/' component={LandingPage}/>
+    <Route exact path='/' component={LoginPage}/>
+    <Route exact path='/landingpage' component={LandingPage}/>
     <Route exact path='/browser' component={BrowserPage}/>
     <Route exact path='/calendar' component={CalendarPage}/>
     <Route exact path='/music' component={MusicPage}/>
