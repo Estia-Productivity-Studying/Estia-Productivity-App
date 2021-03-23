@@ -8,6 +8,53 @@ function handleClick(event) {
   console.info("You clicked a breadcrumb.");
 }
 
+class BlacklistedTable extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      blacklistedWebsites: [
+        //Get blacklisted websites from database
+        { id: "Instagram", URL: "http://instagram.com" },
+        { id: "Twitter", URL: "http://twitter.com" },
+        { id: "Youtube", URL: "http://youtube.com" },
+      ],
+    };
+  }
+
+  renderTableData() {
+    return this.state.blacklistedWebsites.map((blacklistedWebsite, index) => {
+      const { id, URL } = blacklistedWebsite; //destructuring
+      return (
+        <tr key={id}>
+          <td>{id}</td>
+          <td>{URL}</td>
+        </tr>
+      );
+    });
+  }
+
+  renderTableHeader() {
+    let header = Object.keys(this.state.blacklistedWebsites[0]);
+    return header.map((key, index) => {
+      return <th key={index}>{key.toUpperCase()}</th>;
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h3 id="table-title">Blacklisted Websites:</h3>
+        <table id="blacklisted-websites">
+          <tbody>
+            <tr>{this.renderTableHeader()}</tr>
+            {this.renderTableData()}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+}
+
 class SettingsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -57,8 +104,9 @@ class SettingsForm extends React.Component {
   }
 
   handleDeleteAccount(event) {
-    alert("Are you sure you want to delete your account?");
-    //Create prompt to ensure they want to delete their account, if confirmed, delete all account information and remove from database
+    if (window.confirm("Are you sure you want to delete your account?")) {
+      //Delete all account info from database and sign out.
+    }
     event.preventDefault();
   }
 
@@ -88,6 +136,7 @@ class SettingsForm extends React.Component {
           />
         </label>
         <br />
+        <BlacklistedTable />
         <h3>Blacklisted Website Settings:</h3>
         <label>
           Add Blacklisted Website:
