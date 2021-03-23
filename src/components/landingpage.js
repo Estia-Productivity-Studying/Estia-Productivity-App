@@ -10,9 +10,9 @@ function handleClick(event) {
 function LandingPage() {
     return (
         <div>
-        <Typography variant="h6" component="h6">
-            Main Menu_Landing Page:
-        </Typography>
+          <Typography variant="h6" component="h6">
+              Main Menu_Landing Page:
+          </Typography>
         </div>
     );
 }
