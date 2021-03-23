@@ -134,40 +134,6 @@ class Timer extends React.Component {
       <button onClick={this.resetTimer}>Reset</button>
     ) : null;
     return (
-<<<<<<< HEAD
-        <div>
-        <Typography variant="h6" component="h6">
-            Timer:
-        </Typography>
-        <Breadcrumbs aria-label="breadcrumb">
-            <Link color="inherit" href="/" onClick={handleClick}>
-                Login
-            </Link>
-            <Link color="inherit" href="/landingpage" onClick={handleClick}>
-                Main Menu
-            </Link>
-            <Link color="inherit" href="/timer" onClick={handleClick}>
-                Timer
-            </Link>
-            <Link color="inherit" href="/browser" onClick={handleClick}>
-                Browser
-            </Link>
-            <Link color="inherit" href="/notepad" onClick={handleClick}>
-                Notepad
-            </Link>
-            <Link color="inherit" href="/calendar" onClick={handleClick}>
-                Calendar
-            </Link>
-            <Link color="inherit" href="/music" onClick={handleClick}>
-                Music
-            </Link>
-            <Link color="inherit" href="/settings" onClick={handleClick}>
-                Settings
-            </Link>
-        </Breadcrumbs>
-        </div>
-        );
-=======
       <div>
         <h1>
           {header} {timer}
@@ -190,6 +156,9 @@ function TimerPage() {
       </Typography>
       <Breadcrumbs aria-label="breadcrumb">
         <Link color="inherit" href="/" onClick={handleClick}>
+          Login
+        </Link>
+        <Link color="inherit" href="/landingpage" onClick={handleClick}>
           Main Menu
         </Link>
         <Link color="inherit" href="/timer" onClick={handleClick}>
@@ -214,7 +183,6 @@ function TimerPage() {
       <Timer />
     </div>
   );
->>>>>>> 5f12e4aff67b15c015a79c85c6ecd0c60293e711
 }
 
 export default TimerPage;
