@@ -1,11 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
-
-var warningTimeout;
-var warningBox = document.createElement("div");
-warningBox.className = "warning";
+import "./css/settings.css";
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
@@ -115,7 +110,7 @@ class SettingsForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="settings-form" onSubmit={this.handleSubmit}>
         <h3>Study Timer Settings:</h3>
         <label>
           Study Timer Length:
@@ -163,7 +158,7 @@ class SettingsForm extends React.Component {
           />
         </label>
         <br />
-        <button type="button" onClick={this.handleAddWebsite}>
+        <button id="button" type="button" onClick={this.handleAddWebsite}>
           Add Website
         </button>
         <br />
@@ -180,7 +175,7 @@ class SettingsForm extends React.Component {
           />
           <br />
         </label>
-        <button type="button" onClick={this.handleRemoveWebsite}>
+        <button id="button" type="button" onClick={this.handleRemoveWebsite}>
           Remove Website
         </button>
         <h3>Music Stream Settings:</h3>
@@ -218,12 +213,12 @@ class SettingsForm extends React.Component {
           />
           <br />
         </label>
-        <button type="button" onClick={this.handleDeleteAccount}>
+        <button id="button" type="button" onClick={this.handleDeleteAccount}>
           Delete Account
         </button>
         <br />
         <br />
-        <input type="submit" value="Save Changes" />
+        <input id="button" type="submit" value="Save Changes" />
       </form>
     );
   }
@@ -232,9 +227,6 @@ class SettingsForm extends React.Component {
 function SettingsPage() {
   return (
     <div>
-      <Typography variant="h6" component="h6">
-        Settings:
-      </Typography>
       <SettingsForm />
     </div>
   );

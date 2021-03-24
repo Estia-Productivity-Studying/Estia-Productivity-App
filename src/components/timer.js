@@ -1,7 +1,6 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
+import React from "react";
+import Typography from "@material-ui/core/Typography";
+import "./css/timer.css";
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
@@ -122,16 +121,24 @@ class Timer extends React.Component {
       ? "Timer Paused: "
       : "Start Study Timer?";
     let start = this.state.isOn ? null : this.state.isPaused ? null : (
-      <button onClick={this.startTimer}>Start Timer</button>
+      <button id="button" onClick={this.startTimer}>
+        Start Timer
+      </button>
     );
     let pause = this.state.isOn ? (
-      <button onClick={this.pauseTimer}>Pause</button>
+      <button id="button" onClick={this.pauseTimer}>
+        Pause
+      </button>
     ) : null;
     let resume = this.state.isPaused ? (
-      <button onClick={this.startTimer}>Resume</button>
+      <button id="button" onClick={this.startTimer}>
+        Resume
+      </button>
     ) : null;
     let reset = this.state.isPaused ? (
-      <button onClick={this.resetTimer}>Reset</button>
+      <button id="button" onClick={this.resetTimer}>
+        Reset
+      </button>
     ) : null;
     return (
       <div>
@@ -150,10 +157,7 @@ class Timer extends React.Component {
 
 function TimerPage() {
   return (
-    <div>
-      <Typography variant="h6" component="h6">
-        Timer:
-      </Typography>
+    <div id="timer-page">
       <Timer />
     </div>
   );

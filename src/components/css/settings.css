@@ -1,0 +1,66 @@
+#table-title {
+  text-align: center;
+  font-family: arial, sans-serif;
+  color: #3eb489;
+}
+
+#blacklisted-websites {
+  text-align: center;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  border: 3px solid #303030;
+  width: 100%;
+}
+
+#blacklisted-websites td,
+#blacklisted-websites th {
+  border: 1px solid #3eb489;
+  padding: 8px;
+  color: #3eb489;
+}
+
+#blacklisted-websites tr {
+  background-color: #303030;
+}
+
+#blacklisted-websites tr:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#blacklisted-websites th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #3eb489;
+  color: black;
+}
+
+#settings-form {
+  text-align: center;
+  color: #3eb489;
+}
+
+#button {
+  outline: 0;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #3eb489;
+  border-radius: 12px;
+  background: #3eb489;
+  color: #000;
+  font-weight: 600;
+  transition: box-shadow 0.5s ease-in-out, border-color 0.5s ease-in-out;
+}
+
+#button:hover {
+  background-color: #3eb489;
+  color: #000;
+  box-shadow: 0 0 5px #3eb489, 0 0 20px rgb(62 180 137 / 0.8),
+    0 0 35px rgb(62 180 137 / 0.7), 0 0 50px rgb(62 180 137 / 0.6);
+  border-color: #fff;
+}

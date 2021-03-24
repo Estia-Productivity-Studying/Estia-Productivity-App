@@ -1,7 +1,6 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
+import "./css/music.css";
 
 //Get Embed id from database
 const embedId = "5qap5aO4i9A";
@@ -25,14 +24,11 @@ function handleClick(event) {
 }
 
 function MusicPage() {
-    return (
-        <div>
-          <Typography variant="h6" component="h6">
-              Music:
-          </Typography>
-          <YoutubeEmbed embedId={embedId} />
-        </div>
-        );
+  return (
+    <div>
+      <YoutubeEmbed embedId={embedId} />
+    </div>
+  );
 }
 
 export default MusicPage;
