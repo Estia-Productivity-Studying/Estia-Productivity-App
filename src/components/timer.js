@@ -6,7 +6,6 @@ import "./css/timer.css";
 
 const studyTimerTime = 1; //Get from database
 const breakTimerTime = 0.5; //Get from database
-const element = document.getElementById("outer-circle");
 
 class Timer extends React.Component {
   constructor() {
@@ -56,6 +55,7 @@ class Timer extends React.Component {
       isPaused: false,
       time: this.secondsToTime(this.state.seconds), // Added for case when timer is reset and started again to prevent showing undefined for a second
     });
+    const element = document.getElementById("outer-circle");
     element.classList.add("animation-bg");
   }
 
@@ -91,6 +91,7 @@ class Timer extends React.Component {
     //Pauses timer. Timer can be unpaused with resume button or reset with reset button
     this.setState({ isOn: false, isPaused: true });
     clearInterval(this.timer);
+    const element = document.getElementById("outer-circle");
     element.classList.remove("animation-bg");
   }
 
