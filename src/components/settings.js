@@ -110,6 +110,7 @@ class SettingsForm extends React.Component {
         <label>
           Study Timer Length:
           <input
+            id="settings-input"
             name="studyTimerLength"
             type="number"
             value={this.state.studyTimerLength}
@@ -121,6 +122,7 @@ class SettingsForm extends React.Component {
         <label>
           Break Timer Length:
           <input
+            id="settings-input"
             name="breakTimerLength"
             type="number"
             value={this.state.breakTimerLength}
@@ -136,6 +138,7 @@ class SettingsForm extends React.Component {
           <br />
           <label>Website Name:</label>
           <input
+            id="settings-input"
             name="addBlacklistedWebsiteID"
             type="text"
             placeholder="Ex: Instagram"
@@ -145,6 +148,7 @@ class SettingsForm extends React.Component {
           <br />
           <label>Website URL:</label>
           <input
+            id="settings-input"
             name="addBlacklistedWebsiteURL"
             type="url"
             placeholder="Ex: https://www.instagram.com/"
@@ -162,6 +166,7 @@ class SettingsForm extends React.Component {
           <br />
           <label>Website Name:</label>
           <input
+            id="settings-input"
             name="removeBlacklistedWebsite"
             type="text"
             placeholder="Ex: Instagram"
@@ -177,6 +182,7 @@ class SettingsForm extends React.Component {
         <label>
           Youtube Music Stream Link:
           <input
+            id="settings-input"
             name="youtubeLink"
             type="url"
             placeholder="Ex: https://www.youtube.com"
@@ -189,6 +195,7 @@ class SettingsForm extends React.Component {
         <label>
           Change Username:
           <input
+            id="settings-input"
             name="username"
             type="text"
             placeholder="New Username"
@@ -200,6 +207,7 @@ class SettingsForm extends React.Component {
         <label>
           Change Password:
           <input
+            id="settings-input"
             name="password"
             type="password"
             placeholder="New Password"

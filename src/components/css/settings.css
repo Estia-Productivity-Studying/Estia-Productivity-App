@@ -39,6 +39,30 @@
   color: black;
 }
 
+#settings-input {
+  background-color: #303030;
+  margin-bottom: 10px;
+  display: center;
+  width: 10%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #3eb489;
+  transition: 0.3s border-color;
+  color: #3eb489;
+}
+
+#settings-input:hover {
+  background-color: #3f3f3f;
+  box-shadow: 0 0 5px #3eb489, 0 0 20px rgb(62 180 137 / 0.8),
+    0 0 35px rgb(62 180 137 / 0.7), 0 0 50px rgb(62 180 137 / 0.6);
+}
+
+#settings-input:focus {
+  outline: none !important;
+  border: 1px solid #3eb489;
+  box-shadow: 0 0 10px #3eb489;
+}
+
 #button {
   outline: 0;
   position: relative;
@@ -60,5 +84,5 @@
   color: #000;
   box-shadow: 0 0 5px #3eb489, 0 0 20px rgb(62 180 137 / 0.8),
     0 0 35px rgb(62 180 137 / 0.7), 0 0 50px rgb(62 180 137 / 0.6);
-  border-color: #fff;
+  border-color: #3eb489;
 }

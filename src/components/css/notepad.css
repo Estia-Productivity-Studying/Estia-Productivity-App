@@ -29,7 +29,7 @@
   color: #000;
   box-shadow: 0 0 5px #3eb489, 0 0 20px rgb(62 180 137 / 0.8),
     0 0 35px rgb(62 180 137 / 0.7), 0 0 50px rgb(62 180 137 / 0.6);
-  border-color: #fff;
+  border-color: #3eb489;
 }
 
 #wrap {
@@ -38,11 +38,37 @@
   padding: 5px;
   background: #3eb489;
   border: 1px solid #808080;
+  border-radius: 15px;
+}
+
+#inputFileNameToSaveAs {
+  background-color: #303030;
+  margin-bottom: 10px;
+  display: center;
+  width: 10%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #3eb489;
+  transition: 0.3s border-color;
+  color: #3eb489;
+}
+
+#inputFileNameToSaveAs:hover {
+  background-color: #3f3f3f;
+  box-shadow: 0 0 5px #3eb489, 0 0 20px rgb(62 180 137 / 0.8),
+    0 0 35px rgb(62 180 137 / 0.7), 0 0 50px rgb(62 180 137 / 0.6);
+}
+
+#inputFileNameToSaveAs:focus {
+  outline: none !important;
+  border: 1px solid #3eb489;
+  box-shadow: 0 0 10px #3eb489;
 }
 
 #inputTextToSave {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  resize: vertical;
   box-sizing: border-box;
   display: block;
   width: 100%;
@@ -53,6 +79,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   color: #3eb489;
+  border-radius: 15px;
 }
 
 #inputTextToSave:focus {
