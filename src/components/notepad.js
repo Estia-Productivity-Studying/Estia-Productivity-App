@@ -26,11 +26,15 @@ class Notepad extends React.Component {
   loadFileAsText() {
     var fileToLoad = document.getElementById("fileToLoad").files[0];
     var fileReader = new FileReader();
-    fileReader.onload = function (fileLoadedEvent) {
-      var textFromFileLoaded = fileLoadedEvent.target.result;
-      document.getElementById("inputTextToSave").value = textFromFileLoaded;
-    };
-    fileReader.readAsText(fileToLoad, "UTF-8");
+    if (document.getElementById("fileToLoad").files.length !== 0) {
+      fileReader.onload = function (fileLoadedEvent) {
+        var textFromFileLoaded = fileLoadedEvent.target.result;
+        document.getElementById("inputTextToSave").value = textFromFileLoaded;
+      };
+      fileReader.readAsText(fileToLoad, "UTF-8");
+    } else {
+      alert("Please Select a File.");
+    }
   }
 
   render() {
