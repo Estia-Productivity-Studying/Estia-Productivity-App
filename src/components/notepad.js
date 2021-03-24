@@ -45,8 +45,10 @@ class Notepad extends React.Component {
           Save Text to File
         </button>
         <br />
+        <br />
         <h3 id="input-header">Select a File to Load: </h3>
-        <input type="file" id="fileToLoad" />
+        <input id="file-load" type="file" id="fileToLoad" />
+        <br />
         <br />
         <button id="button" onClick={this.loadFileAsText}>
           Load Selected File
