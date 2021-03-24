@@ -75,7 +75,7 @@ export default function SimpleTabs() {
             indicator: classes.indicator,
           }}
         >
-          <Tab label="Logout" />
+          <Tab label="Login" />
           <Tab label="Landing" />
           <Tab label="Browser" />
           <Tab label="Calendar" />
