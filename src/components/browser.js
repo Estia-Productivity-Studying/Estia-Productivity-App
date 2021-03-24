@@ -88,7 +88,9 @@ class BrowserWindow extends React.Component {
                 onKeyDown={this.load_url.bind(this)} 
                 id="url" 
                 label="url" 
-                variant="outlined" />
+                variant="outlined"
+                type="search"
+                />
             </div>
             {/* Build in browser, uses webview from Electron */}
             <webview id="foo" src="https://www.google.com/" style={{ flex: '9.9', width:"device-width", height:1000 }}></webview>

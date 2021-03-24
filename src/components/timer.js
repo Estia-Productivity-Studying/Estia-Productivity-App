@@ -151,9 +151,6 @@ class Timer extends React.Component {
 function TimerPage() {
   return (
     <div>
-      <Typography variant="h6" component="h6">
-        Timer:
-      </Typography>
       <Timer />
     </div>
   );

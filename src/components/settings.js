@@ -222,9 +222,6 @@ class SettingsForm extends React.Component {
 function SettingsPage() {
   return (
     <div>
-      <Typography variant="h6" component="h6">
-        Settings:
-      </Typography>
       <SettingsForm />
     </div>
   );
