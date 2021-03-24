@@ -59,8 +59,7 @@ return (
   <div className={classes.root}>
     <AppBar position="static" color="inherit">
       <Tabs value={selectedTab} onChange={handleChange}>
-        <Tab label="Logout" />
-        <Tab label="Landing" />
+        <Tab label="Estia" />
         <Tab label="Browser" />
         <Tab label="Calendar" />
         <Tab label="Music" />
@@ -73,25 +72,22 @@ return (
     <TabContainer id={0} active={selectedTab === 0}>
       <LoginPage/>
     </TabContainer>
-    <TabContainer id={0} active={selectedTab === 1}>
-      <LandingPage/>
-    </TabContainer>
-    <TabContainer id={1} active={selectedTab === 2}>
+    <TabContainer id={1} active={selectedTab === 1}>
       <BrowserPage/>
     </TabContainer>
-    <TabContainer id={2} active={selectedTab === 3}>
+    <TabContainer id={2} active={selectedTab === 2}>
       <CalendarPage/>
     </TabContainer>
-    <TabContainer id={3} active={selectedTab === 4}>
+    <TabContainer id={3} active={selectedTab === 3}>
       <MusicPage/>
     </TabContainer>
-    <TabContainer id={3} active={selectedTab === 5}>
+    <TabContainer id={3} active={selectedTab === 4}>
       <NotepadPage/>
     </TabContainer>
-    <TabContainer id={4} active={selectedTab === 6}>
+    <TabContainer id={4} active={selectedTab === 5}>
       <TimerPage/>
     </TabContainer>
-    <TabContainer id={5} active={selectedTab === 7}>
+    <TabContainer id={5} active={selectedTab === 6}>
       <SettingsPage/>
     </TabContainer>
   </div>

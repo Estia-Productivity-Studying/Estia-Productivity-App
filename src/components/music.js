@@ -27,9 +27,6 @@ function handleClick(event) {
 function MusicPage() {
     return (
         <div>
-          <Typography variant="h6" component="h6">
-              Music:
-          </Typography>
           <YoutubeEmbed embedId={embedId} />
         </div>
         );
