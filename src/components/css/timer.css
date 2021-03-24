@@ -1,5 +1,6 @@
 #timer-page {
   text-align: center;
+  color: #3eb489;
 }
 
 #button {
@@ -24,8 +25,4 @@
   box-shadow: 0 0 5px #3eb489, 0 0 20px rgb(62 180 137 / 0.8),
     0 0 35px rgb(62 180 137 / 0.7), 0 0 50px rgb(62 180 137 / 0.6);
   border-color: #fff;
-}
-
-h1 {
-  color: #3eb489;
 }

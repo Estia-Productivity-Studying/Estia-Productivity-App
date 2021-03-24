@@ -1,10 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 import "./css/settings.css";
-
-function handleClick(event) {
-  console.info("You clicked a breadcrumb.");
-}
 
 class BlacklistedTable extends React.Component {
   constructor(props) {

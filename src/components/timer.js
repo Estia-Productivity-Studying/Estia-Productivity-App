@@ -1,10 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 import "./css/timer.css";
-
-function handleClick(event) {
-  console.info("You clicked a breadcrumb.");
-}
 
 const studyTimerTime = 1; //Get from database
 const breakTimerTime = 0.5; //Get from database

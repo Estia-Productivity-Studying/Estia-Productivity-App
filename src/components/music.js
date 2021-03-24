@@ -1,5 +1,4 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 import "./css/music.css";
 
 //Get Embed id from database
@@ -18,10 +17,6 @@ const YoutubeEmbed = ({ embedId }) => (
     />
   </div>
 );
-
-function handleClick(event) {
-  console.info("You clicked a breadcrumb.");
-}
 
 function MusicPage() {
   return (
