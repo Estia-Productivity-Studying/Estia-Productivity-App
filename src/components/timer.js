@@ -1,8 +1,12 @@
 import React from "react";
+import PauseIcon from "@material-ui/icons/Pause";
+import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
+import RotateLeftRoundedIcon from "@material-ui/icons/RotateLeftRounded";
 import "./css/timer.css";
 
 const studyTimerTime = 1; //Get from database
 const breakTimerTime = 0.5; //Get from database
+const element = document.getElementById("outer-circle");
 
 class Timer extends React.Component {
   constructor() {
@@ -52,6 +56,7 @@ class Timer extends React.Component {
       isPaused: false,
       time: this.secondsToTime(this.state.seconds), // Added for case when timer is reset and started again to prevent showing undefined for a second
     });
+    element.classList.add("animation-bg");
   }
 
   countDown() {
@@ -86,6 +91,7 @@ class Timer extends React.Component {
     //Pauses timer. Timer can be unpaused with resume button or reset with reset button
     this.setState({ isOn: false, isPaused: true });
     clearInterval(this.timer);
+    element.classList.remove("animation-bg");
   }
 
   resetTimer() {
@@ -117,29 +123,32 @@ class Timer extends React.Component {
       : "Start Study Timer?";
     let start = this.state.isOn ? null : this.state.isPaused ? null : (
       <button id="button" onClick={this.startTimer}>
-        Start Timer
+        <PlayArrowRoundedIcon />
       </button>
     );
     let pause = this.state.isOn ? (
       <button id="button" onClick={this.pauseTimer}>
-        Pause
+        <PauseIcon />
       </button>
     ) : null;
     let resume = this.state.isPaused ? (
       <button id="button" onClick={this.startTimer}>
-        Resume
+        <PlayArrowRoundedIcon />
       </button>
     ) : null;
     let reset = this.state.isPaused ? (
       <button id="button" onClick={this.resetTimer}>
-        Reset
+        <RotateLeftRoundedIcon />
       </button>
     ) : null;
     return (
       <div>
-        <h1>
-          {header} {timer}
-        </h1>
+        <div id="timer-header">{header}</div>
+        <div id="outer-circle">
+          <div id="inner-circle">
+            <div id="timer"> {timer} </div>
+          </div>
+        </div>
         <br />
         {start}
         {pause}
