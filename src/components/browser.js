@@ -9,6 +9,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import RefreshIcon from '@material-ui/icons/Refresh';
 import Input from '@material-ui/core/Input';
 import validator from 'validator'
+import { withWidth } from '@material-ui/core';
 
 // Function to handle clicks on breadcrumbs
 function handleClick(event) {
@@ -70,7 +71,7 @@ class BrowserWindow extends React.Component {
 
     render() {
         return (
-        <div style={{ display: 'flex', flex: 9.5, flexFlow: 'column' }}>
+        <div style={{ display: 'flex', flex: 9.5, flexFlow: 'column', }}>
             {/* Div for browser control buttons */}
             <div style={{ flex: '0.1' }}>
             <IconButton variant="outlined" size="small" onClick={ this.page_back }>
@@ -90,7 +91,7 @@ class BrowserWindow extends React.Component {
                 variant="outlined" />
             </div>
             {/* Build in browser, uses webview from Electron */}
-            <webview id="foo" src="https://www.google.com/" style={{ flex: '9.9' }}></webview>
+            <webview id="foo" src="https://www.google.com/" style={{ flex: '9.9', width:"device-width", height:1000 }}></webview>
         </div>
         );
       }
