@@ -18,11 +18,24 @@ function handleClick(event) {
   console.info("You clicked a breadcrumb.");
 }
 
+const CssCheckbox = withStyles({
+  root: {
+    color: "#3eb489",
+    "&$checked": {
+      color: "#3eb489",
+    },
+  },
+  checked: {},
+})((props) => <Checkbox color="default" {...props} />);
+
 const CssTextField = withStyles({
   root: {
     backgroundColor: "#303030",
     color: "#3eb489",
     "& label.Mui-focused": {
+      color: "#3eb489",
+    },
+    "& label": {
       color: "#3eb489",
     },
     "& .MuiOutlinedInput-root": {
@@ -67,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#3eb489",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -86,11 +99,9 @@ export default function LoginPage() {
         <CssBaseline />
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <LockOutlinedIcon style={{ color: "#121212" }} />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
-          </Typography>
+          <div id="login-header">Login</div>
           <form className={classes.form} noValidate>
             <CssTextField
               variant="outlined"
@@ -115,7 +126,7 @@ export default function LoginPage() {
               autoComplete="current-password"
             />
             <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
+              control={<CssCheckbox value="remember" color="primary" />}
               label="Remember me"
             />
             <Button
@@ -130,17 +141,18 @@ export default function LoginPage() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link id="login-link" href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link id="login-link" href="#" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
 
               <Link
+                id="login-link"
                 href="/landingpage"
                 variant="body2"
                 color="secondary"

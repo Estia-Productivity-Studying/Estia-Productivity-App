@@ -34,7 +34,7 @@ class Notepad extends React.Component {
   render() {
     return (
       <div>
-        <h1 id="header">Notepad</h1>
+        <h1 id="notepad-header">Notepad</h1>
         <div id="wrap">
           <textarea id="inputTextToSave" cols="1000" rows="30"></textarea>
         </div>
