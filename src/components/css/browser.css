@@ -1,0 +1,12 @@
+#url {
+  background-color: #303030;
+  margin-bottom: 1px;
+  margin-top: 1px;
+  display: center;
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #3eb489;
+  transition: 0.3s border-color;
+  color: #3eb489;
+}
