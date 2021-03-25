@@ -60,6 +60,7 @@ class CalendarPage extends React.Component {
           defaultDate={new Date(2015, 3, 12)}
           onSelectEvent={event => alert(event.title)}
           onSelectSlot={this.handleSelect}
+          style={{ height: 1000,width: '95%' }}
         />
       </>
     )
