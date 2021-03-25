@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import { useMemo } from "react";
 
 import LoginPage from "./components/loginpage";
-import LandingPage from "./components/landingpage";
 import BrowserPage from "./components/browser";
 import CalendarPage from "./components/calendar";
 import MusicPage from "./components/music";
