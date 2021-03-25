@@ -1,11 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import Link from "@material-ui/core/Link";
-
-function handleClick(event) {
-  console.info("You clicked a breadcrumb.");
-}
+import "./css/notepad.css";
 
 class Notepad extends React.Component {
   saveTextAsFile() {
@@ -39,41 +33,34 @@ class Notepad extends React.Component {
 
   render() {
     return (
-      <table>
-        <tr>
-          <h3>Notepad:</h3>
-        </tr>
-        <tr>
-          <td colspan="3">
-            <textarea id="inputTextToSave" cols="80" rows="25"></textarea>
-          </td>
-        </tr>
-        <tr>
-          <td>Filename to Save As:</td>
-          <td>
-            <input id="inputFileNameToSaveAs"></input>
-          </td>
-          <td>
-            <button onClick={this.saveTextAsFile}>Save Text to File</button>
-          </td>
-        </tr>
-        <tr>
-          <td>Select a File to Load:</td>
-          <td>
-            <input type="file" id="fileToLoad" />
-          </td>
-          <td>
-            <button onClick={this.loadFileAsText}>Load Selected File</button>
-          </td>
-        </tr>
-      </table>
+      <div>
+        <h1 id="notepad-header">Notepad</h1>
+        <div id="wrap">
+          <textarea id="inputTextToSave" cols="1000" rows="30"></textarea>
+        </div>
+        <h3 id="input-header">Filename to Save As: </h3>
+        <input id="inputFileNameToSaveAs" />
+        <br />
+        <button id="button" onClick={this.saveTextAsFile}>
+          Save Text to File
+        </button>
+        <br />
+        <br />
+        <h3 id="input-header">Select a File to Load: </h3>
+        <input id="file-load" type="file" id="fileToLoad" />
+        <br />
+        <br />
+        <button id="button" onClick={this.loadFileAsText}>
+          Load Selected File
+        </button>
+      </div>
     );
   }
 }
 
 function NotepadPage() {
   return (
-    <div>
+    <div id="notepad-page">
       <Notepad />
     </div>
   );

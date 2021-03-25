@@ -1,11 +1,8 @@
-import React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
-
-function handleClick(event) {
-  console.info("You clicked a breadcrumb.");
-}
+import React from "react";
+import PauseIcon from "@material-ui/icons/Pause";
+import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
+import RotateLeftRoundedIcon from "@material-ui/icons/RotateLeftRounded";
+import "./css/timer.css";
 
 const studyTimerTime = 1; //Get from database
 const breakTimerTime = 0.5; //Get from database
@@ -58,6 +55,8 @@ class Timer extends React.Component {
       isPaused: false,
       time: this.secondsToTime(this.state.seconds), // Added for case when timer is reset and started again to prevent showing undefined for a second
     });
+    const element = document.getElementById("outer-circle");
+    element.classList.add("animation-bg");
   }
 
   countDown() {
@@ -92,6 +91,8 @@ class Timer extends React.Component {
     //Pauses timer. Timer can be unpaused with resume button or reset with reset button
     this.setState({ isOn: false, isPaused: true });
     clearInterval(this.timer);
+    const element = document.getElementById("outer-circle");
+    element.classList.remove("animation-bg");
   }
 
   resetTimer() {
@@ -122,22 +123,33 @@ class Timer extends React.Component {
       ? "Timer Paused: "
       : "Start Study Timer?";
     let start = this.state.isOn ? null : this.state.isPaused ? null : (
-      <button onClick={this.startTimer}>Start Timer</button>
+      <button id="button" onClick={this.startTimer}>
+        <PlayArrowRoundedIcon />
+      </button>
     );
     let pause = this.state.isOn ? (
-      <button onClick={this.pauseTimer}>Pause</button>
+      <button id="button" onClick={this.pauseTimer}>
+        <PauseIcon />
+      </button>
     ) : null;
     let resume = this.state.isPaused ? (
-      <button onClick={this.startTimer}>Resume</button>
+      <button id="button" onClick={this.startTimer}>
+        <PlayArrowRoundedIcon />
+      </button>
     ) : null;
     let reset = this.state.isPaused ? (
-      <button onClick={this.resetTimer}>Reset</button>
+      <button id="button" onClick={this.resetTimer}>
+        <RotateLeftRoundedIcon />
+      </button>
     ) : null;
     return (
       <div>
-        <h1>
-          {header} {timer}
-        </h1>
+        <div id="timer-header">{header}</div>
+        <div id="outer-circle">
+          <div id="inner-circle">
+            <div id="timer"> {timer} </div>
+          </div>
+        </div>
         <br />
         {start}
         {pause}
@@ -150,7 +162,7 @@ class Timer extends React.Component {
 
 function TimerPage() {
   return (
-    <div>
+    <div id="timer-page">
       <Timer />
     </div>
   );

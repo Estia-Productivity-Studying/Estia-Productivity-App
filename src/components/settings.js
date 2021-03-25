@@ -1,5 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import "./css/settings.css";
 
 class BlacklistedTable extends React.Component {
   constructor(props) {
@@ -105,11 +105,12 @@ class SettingsForm extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="settings-form" onSubmit={this.handleSubmit}>
         <h3>Study Timer Settings:</h3>
         <label>
           Study Timer Length:
           <input
+            id="settings-input"
             name="studyTimerLength"
             type="number"
             value={this.state.studyTimerLength}
@@ -121,6 +122,7 @@ class SettingsForm extends React.Component {
         <label>
           Break Timer Length:
           <input
+            id="settings-input"
             name="breakTimerLength"
             type="number"
             value={this.state.breakTimerLength}
@@ -136,6 +138,7 @@ class SettingsForm extends React.Component {
           <br />
           <label>Website Name:</label>
           <input
+            id="settings-input"
             name="addBlacklistedWebsiteID"
             type="text"
             placeholder="Ex: Instagram"
@@ -145,6 +148,7 @@ class SettingsForm extends React.Component {
           <br />
           <label>Website URL:</label>
           <input
+            id="settings-input"
             name="addBlacklistedWebsiteURL"
             type="url"
             placeholder="Ex: https://www.instagram.com/"
@@ -153,7 +157,7 @@ class SettingsForm extends React.Component {
           />
         </label>
         <br />
-        <button type="button" onClick={this.handleAddWebsite}>
+        <button id="button" type="button" onClick={this.handleAddWebsite}>
           Add Website
         </button>
         <br />
@@ -162,6 +166,7 @@ class SettingsForm extends React.Component {
           <br />
           <label>Website Name:</label>
           <input
+            id="settings-input"
             name="removeBlacklistedWebsite"
             type="text"
             placeholder="Ex: Instagram"
@@ -170,13 +175,14 @@ class SettingsForm extends React.Component {
           />
           <br />
         </label>
-        <button type="button" onClick={this.handleRemoveWebsite}>
+        <button id="button" type="button" onClick={this.handleRemoveWebsite}>
           Remove Website
         </button>
         <h3>Music Stream Settings:</h3>
         <label>
           Youtube Music Stream Link:
           <input
+            id="settings-input"
             name="youtubeLink"
             type="url"
             placeholder="Ex: https://www.youtube.com"
@@ -189,6 +195,7 @@ class SettingsForm extends React.Component {
         <label>
           Change Username:
           <input
+            id="settings-input"
             name="username"
             type="text"
             placeholder="New Username"
@@ -200,6 +207,7 @@ class SettingsForm extends React.Component {
         <label>
           Change Password:
           <input
+            id="settings-input"
             name="password"
             type="password"
             placeholder="New Password"
@@ -208,12 +216,12 @@ class SettingsForm extends React.Component {
           />
           <br />
         </label>
-        <button type="button" onClick={this.handleDeleteAccount}>
+        <button id="button" type="button" onClick={this.handleDeleteAccount}>
           Delete Account
         </button>
         <br />
         <br />
-        <input type="submit" value="Save Changes" />
+        <input id="button" type="submit" value="Save Changes" />
       </form>
     );
   }
