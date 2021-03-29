@@ -1,26 +1,21 @@
 import React from "react";
 import "./css/mainMenu.css";
+import events from './events'
 
 class Menu extends React.Component {
+  constructor(...args) {
+    super(...args)
+    this.state = { events }
+  }
+
   render() {
     return(
-      <div>
-        <div class="split left">
+      <div class="split right">
           <div class="centered">
-          <img src="../temporary_image/folders.jpg" alt="Folders"/>
-          <h2>Folders side</h2>
-          <p>Some text.</p>
-          </div>
-        </div>
-    
-        <div class="split right">
-          <div class="centered">
-          <img src="img_avatar.png" alt="MiniCalendar"/>
           <h2>Mini Calendar</h2>
           <p>Only shows next week or 2</p>
           </div>
         </div> 
-      </div>
     );
   }
 }
