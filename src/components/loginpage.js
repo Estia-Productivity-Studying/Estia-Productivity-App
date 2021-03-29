@@ -158,7 +158,6 @@ export default function LoginPage() {
 
               <Link
                 id="login-link"
-                /*href="/App"*/
                 variant="body2"
                 color="secondary"
                 onClick={handleSkip}

@@ -3,10 +3,6 @@ import "./css/mainMenu.css";
 import events from './events'
 
 class Menu extends React.Component {
-  constructor(...args) {
-    super(...args)
-    this.state = { events }
-  }
 
   render() {
     return(
