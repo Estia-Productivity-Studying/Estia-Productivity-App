@@ -1,0 +1,15 @@
+#Menu-page {
+    color: #3eb489;
+  }
+  
+  #Menu-link {
+    color: #3eb489;
+  }
+  
+  #Menu-header {
+    font-weight: 600;
+    font-size: 50px;
+    color: #3eb489;
+    text-shadow: 0 0 0px #3eb489, 0 0 50px #3eb489;
+  }
+  

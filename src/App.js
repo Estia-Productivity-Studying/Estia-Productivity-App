@@ -14,6 +14,7 @@ import MusicPage from "./components/music";
 import NotepadPage from "./components/notepad";
 import SettingsPage from "./components/settings";
 import TimerPage from "./components/timer";
+import MainMenu from "./components/mainMenu";
 
 const useStyles = makeStyles((theme) => ({
   indicator: {
@@ -74,7 +75,7 @@ export default function SimpleTabs() {
             indicator: classes.indicator,
           }}
         >
-          <Tab label="Login" />
+          <Tab label="Main Menu" />
           <Tab label="Browser" />
           <Tab label="Calendar" />
           <Tab label="Music" />
@@ -85,7 +86,7 @@ export default function SimpleTabs() {
       </AppBar>
 
       <TabContainer id={0} active={selectedTab === 0}>
-        <LoginPage />
+        <MainMenu />
       </TabContainer>
       <TabContainer id={0} active={selectedTab === 1}>
         <BrowserPage />

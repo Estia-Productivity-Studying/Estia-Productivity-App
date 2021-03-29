@@ -13,9 +13,14 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Container from "@material-ui/core/Container";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import "./css/loginpage.css";
+import {leaveSplash} from '../index';
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
+}
+
+function handleSkip(event) {
+  leaveSplash();
 }
 
 const CssCheckbox = withStyles({
@@ -153,10 +158,10 @@ export default function LoginPage() {
 
               <Link
                 id="login-link"
-                href="/landingpage"
+                /*href="/App"*/
                 variant="body2"
                 color="secondary"
-                onClick={handleClick}
+                onClick={handleSkip}
               >
                 CLICK HERE TO SKIP
               </Link>
