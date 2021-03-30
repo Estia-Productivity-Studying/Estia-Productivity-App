@@ -14,6 +14,7 @@ import Container from "@material-ui/core/Container";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import "./css/loginpage.css";
 import {leaveSplash} from '../index';
+import Estialogo from "../assets/Estialogo.png"
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
@@ -106,7 +107,7 @@ export default function LoginPage() {
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon style={{ color: "#121212" }} />
           </Avatar>
-          <div id="login-header">Login</div>
+          <div id="login-header">Estia</div>
           <form className={classes.form} noValidate>
             <CssTextField
               variant="outlined"
