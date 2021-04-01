@@ -115,7 +115,7 @@ export default function LoginPage() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="Username/TTU Email"
               name="email"
               autoComplete="email"
               autoFocus
