@@ -42,6 +42,22 @@ class CalendarPage extends React.Component {
       });      
   }
 
+  delete_event(event) {
+    smalltalk
+      .confirm('Question', "Would you like to remove this event?")
+      .then(() => {
+        this.setState((prevState, props) => {
+          const events = [...prevState.events]
+          const idx = events.indexOf(event)
+          events.splice(idx, 1);
+          return { events };
+        });
+      })
+      .catch(() => {
+          console.log('ERROR: smalltalk failed on deleting event');
+      });
+  }
+  
   render() {
     return (
       <>
@@ -58,9 +74,9 @@ class CalendarPage extends React.Component {
           defaultView={'week'}
           scrollToTime={new Date(1970, 1, 1, 6)}
           defaultDate={new Date(2015, 3, 12)}
-          onSelectEvent={event => alert(event.title)}
+          onSelectEvent={event => this.delete_event(event)}
           onSelectSlot={this.handleSelect}
-          style={{ height: 1000,width: '95%' }}
+          style={{ height: 1000,width: '95%', 'background-color': 'white' }}
         />
       </>
     )
