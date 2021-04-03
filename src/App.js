@@ -42,6 +42,7 @@ function TabContainer(props) {
   console.log("In TabContainer");
   return (
     <Typography
+      style={{ height: '100%'}}
       id={props.id.toString()}
       component="div"
       className={
@@ -65,7 +66,7 @@ export default function SimpleTabs() {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ height: '100%' }}>
       <AppBar position="static" color="inherit">
         <Tabs
           value={selectedTab}
@@ -77,7 +78,7 @@ export default function SimpleTabs() {
         >
           <Tab label="Main Menu" />
           <Tab label="Browser" />
-          <Tab label="Calendar" />
+          <Tab label="Calendar"/>
           <Tab label="Music" />
           <Tab label="Notepad" />
           <Tab label="Timer" />
@@ -89,7 +90,7 @@ export default function SimpleTabs() {
         <MainMenu />
       </TabContainer>
       <TabContainer id={0} active={selectedTab === 1}>
-        <BrowserPage />
+        <BrowserPage/>
       </TabContainer>
       <TabContainer id={1} active={selectedTab === 2}>
         <CalendarPage />
