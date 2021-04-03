@@ -60,25 +60,21 @@ class CalendarPage extends React.Component {
   
   render() {
     return (
-      <>
-        <ExampleControlSlot.Entry waitForOutlet>
-          <strong>
-            Click an event to see more info, or drag the mouse over the calendar
-            to select a date/time range.
-          </strong>
-        </ExampleControlSlot.Entry>
+      <div
+        style={{ display: 'flex', height: '100%' }}
+      >
         <Calendar
           selectable
           localizer={localizer}
           events={this.state.events}
-          defaultView={'week'}
+          defaultView={'month'}
           scrollToTime={new Date(1970, 1, 1, 6)}
           defaultDate={new Date(2015, 3, 12)}
           onSelectEvent={event => this.delete_event(event)}
           onSelectSlot={this.handleSelect}
-          style={{ height: 1000,width: '95%', 'background-color': 'white' }}
+          style={{ flex: '1', 'background-color': 'white' }}
         />
-      </>
+      </div>
     )
   }
 }
