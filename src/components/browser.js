@@ -108,7 +108,7 @@ class BrowserWindow extends React.Component {
         <webview
           id="foo"
           src="https://www.google.com/"
-          style={{ flex: '9.9', 'background-color': 'white' }}
+          style={{ flex: '9.9', 'background-color': 'black' }}
         ></webview>
       </div>
     );
