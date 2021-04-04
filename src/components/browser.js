@@ -73,7 +73,7 @@ class BrowserWindow extends React.Component {
 
   render() {
     return (
-      <div style={{ display: "flex", flex: 9.5, flexFlow: "column" }}>
+      <div style={{ display: 'flex', 'flex-direction': 'column', height: '100%' }}>
         {/* Div for browser control buttons */}
         <div style={{ flex: "0.1" }}>
           <IconButton variant="outlined" size="small" onClick={this.page_back}>
@@ -108,7 +108,7 @@ class BrowserWindow extends React.Component {
         <webview
           id="foo"
           src="https://www.google.com/"
-          style={{ flex: "9.9", width: "device-width", height: 1000 }}
+          style={{ flex: '9.9', 'background-color': 'black' }}
         ></webview>
       </div>
     );

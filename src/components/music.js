@@ -5,22 +5,19 @@ import "./css/music.css";
 const embedId = "5qap5aO4i9A";
 
 const YoutubeEmbed = ({ embedId }) => (
-  <div className="video-responsive">
     <iframe
-      width="853"
-      height="480"
+      style={{ flex: '1' }}
       src={`https://www.youtube.com/embed/${embedId}`}
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
       title="Embedded youtube"
     />
-  </div>
 );
 
 function MusicPage() {
   return (
-    <div>
+    <div style={{ display: 'flex', height: '100%' }}>
       <YoutubeEmbed embedId={embedId} />
     </div>
   );

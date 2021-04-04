@@ -68,8 +68,6 @@ class CalendarPage extends React.Component {
           localizer={localizer}
           events={this.state.events}
           defaultView={'month'}
-          scrollToTime={new Date(1970, 1, 1, 6)}
-          defaultDate={new Date(2015, 3, 12)}
           onSelectEvent={event => this.delete_event(event)}
           onSelectSlot={this.handleSelect}
           style={{ flex: '1', 'background-color': 'white' }}
