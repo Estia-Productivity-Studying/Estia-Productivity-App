@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 const useTabContainerStyles = makeStyles((theme) =>
   createStyles({
     root: {
-      padding: 8 * 3,
     },
     tabcontainerInActive: {
       display: "none",
@@ -42,7 +41,7 @@ function TabContainer(props) {
   console.log("In TabContainer");
   return (
     <Typography
-      style={{ height: '100%'}}
+      style={{ flex: '1'}}
       id={props.id.toString()}
       component="div"
       className={
@@ -66,7 +65,7 @@ export default function SimpleTabs() {
   }
 
   return (
-    <div className={classes.root} style={{ height: '100%' }}>
+    <div class='wrapper'>
       <AppBar position="static" color="inherit">
         <Tabs
           value={selectedTab}
