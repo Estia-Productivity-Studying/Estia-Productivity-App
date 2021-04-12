@@ -16,6 +16,8 @@ import "./css/loginpage.css";
 import {leaveSplash} from '../index';
 import Estialogo from "../assets/Estialogo.png"
 
+import axios from 'axios';
+
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
 }
@@ -99,6 +101,31 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage() {
   const classes = useStyles();
+
+  let login = () => {
+    console.log("hey");
+    // fetch("http://localhost:8080/login", {
+    //   // credentials: 'include',
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: {
+    //     "username": "ismael",
+    //     "password": "ismael"
+    //   }
+    // })
+    // .then(response => handleSkip)
+    // .catch(error => handleSkip);
+
+    let body = {'username': 'ismael', 'password': 'ismael'}
+  
+    axios.post('http://localhost:8080/student/login', body)
+      .then(res => {console.log("login successful")})
+      .catch(error => console.log("WTF:" + error));
+    // axios.get("http://localhost:8080/student/test").then(res => console.log("success")).catch(error => console.log(error));
+  }
+
   return (
     <div id="login-page">
       <Container component="main" maxWidth="xs">
@@ -142,6 +169,7 @@ export default function LoginPage() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={login}
             >
               Sign In
             </Button>
