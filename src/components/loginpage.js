@@ -103,27 +103,12 @@ export default function LoginPage() {
   const classes = useStyles();
 
   let login = () => {
-    console.log("hey");
-    // fetch("http://localhost:8080/login", {
-    //   // credentials: 'include',
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: {
-    //     "username": "ismael",
-    //     "password": "ismael"
-    //   }
-    // })
-    // .then(response => handleSkip)
-    // .catch(error => handleSkip);
-
-    let body = {'username': 'ismael', 'password': 'ismael'}
+    let body = {'username': 'tes21342314t1', 'password': 'te231412432st1'}
   
-    axios.post('http://localhost:8080/student/login', body)
+    axios.post('http://localhost:8080/student/signup', body)
       .then(res => {console.log("login successful")})
       .catch(error => console.log("WTF:" + error));
-    // axios.get("http://localhost:8080/student/test").then(res => console.log("success")).catch(error => console.log(error));
+    axios.get("http://localhost:8080/student/test").then(res => console.log("success")).catch(error => console.log(error));
   }
 
   return (
@@ -164,7 +149,6 @@ export default function LoginPage() {
             />
             <Button
               id="button"
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
