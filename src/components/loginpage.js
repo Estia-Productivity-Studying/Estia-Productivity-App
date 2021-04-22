@@ -16,6 +16,8 @@ import "./css/loginpage.css";
 import {leaveSplash} from '../index';
 import Estialogo from "../assets/Estialogo.png"
 
+import axios from 'axios';
+
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
 }
@@ -99,6 +101,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginPage() {
   const classes = useStyles();
+
+  let login = () => {
+    let body = {'username': 'tes21342314t1', 'password': 'te231412432st1'}
+  
+    axios.post('http://localhost:8080/student/signup', body)
+      .then(res => {console.log("login successful")})
+      .catch(error => console.log("WTF:" + error));
+    axios.get("http://localhost:8080/student/test").then(res => console.log("success")).catch(error => console.log(error));
+  }
+
   return (
     <div id="login-page">
       <Container component="main" maxWidth="xs">
@@ -137,11 +149,11 @@ export default function LoginPage() {
             />
             <Button
               id="button"
-              type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={login}
             >
               Sign In
             </Button>

@@ -8,7 +8,6 @@ function createWindow () {
     width: 1500,
     height: 1000,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
       webviewTag: true
     }
   })
