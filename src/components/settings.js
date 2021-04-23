@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/settings.css";
+import axios from 'axios';
 
 class BlacklistedTable extends React.Component {
   constructor(props) {
@@ -85,6 +86,19 @@ class SettingsForm extends React.Component {
   handleAddWebsite(event) {
     //Add website info to database with addBlacklistedWebsiteID as the key for addBlacklistedWebsiteURL
     //Update display table
+
+    // axios.post('http://localhost:8080/blacklist/add', {
+    //   siteId: '123',
+    //   studentId: '123',
+    //   website: 'twitch.tv'
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+    
     alert("Website Added");
     event.preventDefault();
   }
