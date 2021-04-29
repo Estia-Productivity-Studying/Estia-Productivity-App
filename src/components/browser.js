@@ -9,9 +9,16 @@ import validator from "validator";
 import { withWidth } from "@material-ui/core";
 import "./css/browser.css";
 
+let blacklist = ""
+
 // Function to handle clicks on breadcrumbs
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
+}
+
+export const updateBlacklist=(jwt)=>{
+  console.log(jwt)
+  //blacklist = databaseBlacklist
 }
 
 class BrowserWindow extends React.Component {
@@ -20,7 +27,7 @@ class BrowserWindow extends React.Component {
     this.state = {
       //Get current settings from database
       //placeholder data, should get replaced by backend
-      blacklist: ["twitter.com"],
+      blacklist: blacklist,
     };
   }
 
