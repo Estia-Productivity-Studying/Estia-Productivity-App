@@ -16,18 +16,12 @@ function handleClick(event) {
   console.info("You clicked a breadcrumb.");
 }
 
-export const updateBlacklist=(jwt)=>{
-  console.log(jwt)
-  //blacklist = databaseBlacklist
-}
-
 class BrowserWindow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //Get current settings from database
-      //placeholder data, should get replaced by backend
-      blacklist: blacklist,
+      //blacklist, gets updated from database
+      blacklist: [],
     };
   }
 
@@ -54,6 +48,7 @@ class BrowserWindow extends React.Component {
 
   // function to handle you press enter on the search bar
   load_url(event) {
+    this.updateBlacklist()
     //checks if key pressed is enter, if so checks for valid url that's not in blacklist
     //if everything looks goo then loads the url with webview
     if (event.key === "Enter") {
@@ -73,9 +68,13 @@ class BrowserWindow extends React.Component {
         event.target.placeholder = "";
       } else {
         event.target.value = "";
-        event.target.placeholder = "invalid url";
+        event.target.placeholder = "invalid url or blacklisted";
       }
     }
+  }
+
+  updateBlacklist=()=>{
+    this.setState({ blacklist: localStorage.getItem('blacklist') })
   }
 
   render() {

@@ -15,13 +15,11 @@ import { withStyles, makeStyles } from "@material-ui/core/styles";
 import "./css/loginpage.css";
 import {leaveSplash} from '../index';
 import Estialogo from "../assets/Estialogo.png"
-import {updateBlacklist} from './browser';
 
 import axios from 'axios';
 
 let username = ""
 let password = ""
-let jwt = ""
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
@@ -126,7 +124,12 @@ export default function LoginPage() {
       'password': password
     })
     .then(function (response) {
-      console.log(response.data.jwt)
+      var databaseBlacklist = response.data.student.blacklistedSites
+      var blacklist = []
+      for (var i = 0; i < databaseBlacklist.length; i++) {
+        blacklist.push(databaseBlacklist[i].website);
+      }
+      localStorage.setItem("blacklist", blacklist)
       leaveSplash();
     })
     .catch(function (error) {
