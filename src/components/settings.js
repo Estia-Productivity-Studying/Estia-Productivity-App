@@ -254,7 +254,7 @@ class SettingsForm extends React.Component {
           />
           <br />
         </label>
-        <h3>Account Settings:</h3>
+        {/* <h3>Account Settings:</h3>
         <label>
           Change Username:
           <input
@@ -281,7 +281,7 @@ class SettingsForm extends React.Component {
         </label>
         <button id="button" type="button" onClick={this.handleDeleteAccount}>
           Delete Account
-        </button>
+        </button> */}
         <br />
         <br />
         <input id="button" type="submit" value="Save Changes" />

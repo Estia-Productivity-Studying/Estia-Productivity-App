@@ -28,7 +28,7 @@ function handleClick(event) {
 }
 
 function handleSkip(event) {
-  leaveSplash();
+  // leaveSplash();
 }
 
 const CssCheckbox = withStyles({
@@ -104,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage() {
+export default function LoginPage(props) {
   const classes = useStyles();
 
   let signup = () => {
@@ -130,6 +130,7 @@ export default function LoginPage() {
       .then(function (response) {
         console.log(response.data.jwt);
         localStorage.setItem("jwt", response.data.jwt);
+        props.data2ToLogin(true);
         localStorage.setItem("studentId", response.data.student.id);
         // if (response.data.student.blacklistedSites == "") {
         //   localStorage.setItem("blacklist", [
@@ -143,7 +144,7 @@ export default function LoginPage() {
         //     response.data.student.blacklistedSites,
         //   ]);
         // }
-        leaveSplash();
+        // leaveSplash();
       })
       .catch(function (error) {
         console.log(error);
