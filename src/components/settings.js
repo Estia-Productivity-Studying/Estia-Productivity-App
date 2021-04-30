@@ -10,7 +10,7 @@ class BlacklistedTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //localStorage.getItem("blacklist"),
+      // blacklistedWebsites: localStorage.getItem("blacklist"),
       blacklistedWebsites: [
         //Get blacklisted websites from database
         { id: "Instagram", URL: "http://instagram.com" },
@@ -138,15 +138,16 @@ class SettingsForm extends React.Component {
     if (this.state.removeBlacklistedWebsite === "") {
       alert("Please Enter a ID");
     } else {
+      console.log(localStorage.getItem("studentId"));
+      console.log(this.state.removeBlacklistedWebsite);
       axios
-        .delete(
-          "http://localhost:8080/blacklist/delete",
-          {
-            siteId: this.state.removeBlacklistedWebsite,
+        .delete("http://localhost:8080/blacklist/delete", {
+          headers: headers,
+          data: {
+            siteId: parseInt(this.state.removeBlacklistedWebsite),
             studentId: localStorage.getItem("studentId"),
           },
-          { headers: headers }
-        )
+        })
         .then(function (response) {
           this.setState({ removeBlacklistedWebsite: "" });
           alert("Website Removed");
