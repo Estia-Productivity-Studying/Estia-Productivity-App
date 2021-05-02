@@ -4,6 +4,8 @@ import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
 import RotateLeftRoundedIcon from "@material-ui/icons/RotateLeftRounded";
 import "./css/timer.css";
 
+import study_timer from "./browser"
+
 const studyTimerTime = 1; //Get from database
 const breakTimerTime = 0.5; //Get from database
 
@@ -49,6 +51,7 @@ class Timer extends React.Component {
   }
 
   startTimer() {
+    localStorage.setItem('timer', this.currentTimer);
     this.timer = setInterval(this.countDown, 1000);
     this.setState({
       isOn: true,
@@ -75,12 +78,14 @@ class Timer extends React.Component {
           time: this.secondsToTime(seconds),
           seconds: breakTimerTime * 60,
         });
+        localStorage.setItem('timer', this.currentTimer);
       } else {
         this.currentTimer = "Study Timer";
         this.setState({
           time: this.secondsToTime(seconds),
           seconds: studyTimerTime * 60,
         });
+        localStorage.setItem('timer', this.currentTimer);
       }
       clearInterval(this.timer);
       this.startTimer();
@@ -93,6 +98,7 @@ class Timer extends React.Component {
     clearInterval(this.timer);
     const element = document.getElementById("outer-circle");
     element.classList.remove("animation-bg");
+    localStorage.setItem('timer', 'pause');
   }
 
   resetTimer() {
@@ -152,7 +158,7 @@ class Timer extends React.Component {
         </div>
         <br />
         {start}
-        {pause}
+        {pause} 
         {resume}
         {reset}
       </div>
