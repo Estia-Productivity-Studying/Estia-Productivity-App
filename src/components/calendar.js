@@ -23,6 +23,7 @@ class CalendarPage extends React.Component {
     super(...args)
 
     this.state = { events }
+    this.update_calendar();
   }
 
   handleSelect = ({ start, end }) => {
@@ -33,7 +34,7 @@ class CalendarPage extends React.Component {
         const title = value
         this.setState({
           events: [
-            //...this.state.events,
+            ...this.state.events,
             {
               start,
               end,
@@ -81,16 +82,25 @@ class CalendarPage extends React.Component {
   }
 
   update_calendar=()=>{
-    //this.setState({calendar: []});
+    this.setState({events: []});
     let calendarArray = JSON.parse(localStorage.getItem('calendar'))
-    // for (let i = 1; i < calendarArray.length; i += 1) {
-    //   this.state.calendar.push(calendarArray[i])
-    // }
     console.log(calendarArray)
+    if (calendarArray != null && calendarArray.length){
+    for (let i = 0; i < calendarArray.length; i += 1) {
+      this.state.events.push({
+        id: calendarArray[i][0],
+        title: calendarArray[i][1],
+        allDay: true,
+        start: new Date(calendarArray[i][2]),
+        end: new Date(calendarArray[i][3]),
+      })
+    }
+    console.log(this.state.events)
+    this.forceUpdate()
+    }
   }
   
   render() {
-    this.update_calendar();
     return (
       <div
         style={{ display: 'flex', height: '100%' }}
