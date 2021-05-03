@@ -13,6 +13,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Container from "@material-ui/core/Container";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import "./css/loginpage.css";
+
 import { leaveSplash } from "../index";
 import Estialogo from "../assets/Estialogo.png";
 import { updateBlacklist } from "./browser";
@@ -145,6 +146,12 @@ export default function LoginPage(props) {
         //   ]);
         // }
         // leaveSplash();
+        var databaseBlacklist = response.data.student.blacklistedSites
+        var blacklist = []
+        for (var i = 0; i < databaseBlacklist.length; i++) {
+          blacklist.push(databaseBlacklist[i].website);
+        }
+        localStorage.setItem("blacklist", blacklist)
       })
       .catch(function (error) {
         console.log(error);

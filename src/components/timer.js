@@ -83,6 +83,7 @@ class Timer extends React.Component {
           time: this.secondsToTime(seconds),
           seconds: this.breakTimerTime * 60,
         });
+        localStorage.setItem('timer', this.currentTimer);
       } else {
         alert("Break Time Ended. Starting Study Timer.");
         this.currentTimer = "Study Timer";
@@ -90,6 +91,7 @@ class Timer extends React.Component {
           time: this.secondsToTime(seconds),
           seconds: this.studyTimerTime * 60,
         });
+        localStorage.setItem('timer', this.currentTimer);
       }
       clearInterval(this.timer);
       this.startTimer();
@@ -102,6 +104,7 @@ class Timer extends React.Component {
     clearInterval(this.timer);
     const element = document.getElementById("outer-circle");
     element.classList.remove("animation-bg");
+    localStorage.setItem('timer', 'pause');
   }
 
   resetTimer() {
@@ -161,7 +164,7 @@ class Timer extends React.Component {
         </div>
         <br />
         {start}
-        {pause}
+        {pause} 
         {resume}
         {reset}
       </div>

@@ -9,25 +9,17 @@ import validator from "validator";
 import { withWidth } from "@material-ui/core";
 import "./css/browser.css";
 
-let blacklist = ""
-
 // Function to handle clicks on breadcrumbs
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
-}
-
-export const updateBlacklist=(jwt)=>{
-  console.log(jwt)
-  //blacklist = databaseBlacklist
 }
 
 class BrowserWindow extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //Get current settings from database
-      //placeholder data, should get replaced by backend
-      blacklist: blacklist,
+      //blacklist, gets updated from database
+      blacklist: [],
     };
   }
 
@@ -54,28 +46,49 @@ class BrowserWindow extends React.Component {
 
   // function to handle you press enter on the search bar
   load_url(event) {
+    this.updateBlacklist()
+    console.log(event.target.value)
+    console.log(this.getBlacklist())
     //checks if key pressed is enter, if so checks for valid url that's not in blacklist
     //if everything looks goo then loads the url with webview
     if (event.key === "Enter") {
-      if (
-        validator.isURL("http://" + event.target.value) &&
-        !this.getBlacklist().includes(event.target.value)
-      ) {
+      if (localStorage.getItem('timer') == "Break Timer" ||
+        localStorage.getItem('timer') == "pause" &&
+        validator.isURL("http://" + event.target.value)
+        ) {
         const webview = document.querySelector("webview");
         webview.loadURL("http://" + event.target.value);
         event.target.placeholder = "";
-      } else if (
-        validator.isURL(event.target.value) &&
-        !this.getBlacklist().includes(event.target.value)
-      ) {
-        const webview = document.querySelector("webview");
-        webview.loadURL(event.target.value);
-        event.target.placeholder = "";
-      } else {
+      }
+      else if (localStorage.getItem('timer') == "Study Timer"){
+        if (
+          validator.isURL("http://" + event.target.value) &&
+          !this.getBlacklist().includes(event.target.value)
+        ) {
+          const webview = document.querySelector("webview");
+          webview.loadURL("http://" + event.target.value);
+          event.target.placeholder = "";
+        } else if (
+          validator.isURL(event.target.value) &&
+          !this.getBlacklist().includes(event.target.value)
+        ) {
+          const webview = document.querySelector("webview");
+          webview.loadURL(event.target.value);
+          event.target.placeholder = "";
+        } else {
+          event.target.value = "";
+          event.target.placeholder = "invalid url or blacklisted";
+        }
+      }
+      else{  
         event.target.value = "";
         event.target.placeholder = "invalid url";
       }
-    }
+    } 
+  }
+
+  updateBlacklist=()=>{
+    this.setState({ blacklist: localStorage.getItem('blacklist') })
   }
 
   render() {
