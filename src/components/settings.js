@@ -1,6 +1,7 @@
 import React from "react";
 import "./css/settings.css";
 import axios from "axios";
+const smalltalk = require('smalltalk');
 
 const headers = {
   Authorization: "Bearer " + localStorage.getItem("jwt"),
@@ -102,7 +103,8 @@ class SettingsForm extends React.Component {
     let embedId = youtube_parser(this.state.youtubeLink);
     localStorage.setItem("embedId", embedId);
     this.setState({ youtubeLink: "" });
-    alert("All Changes Submitted");
+    smalltalk
+      .alert('Success', 'All Changes Submitted')
     event.preventDefault();
   }
 
@@ -110,7 +112,8 @@ class SettingsForm extends React.Component {
     //Add website info to database with addBlacklistedWebsiteID as the key for addBlacklistedWebsiteURL
     //Update display table
     if (this.state.addBlacklistedWebsiteURL === "") {
-      alert("Please Enter a URL");
+      smalltalk
+        .alert('', "Please Enter a URL")
     } else {
       axios
         .post(
@@ -123,7 +126,8 @@ class SettingsForm extends React.Component {
         )
         .then(function (response) {
           this.setState({ addBlacklistedWebsiteURL: "" });
-          alert("Website Added");
+          smalltalk
+            .alert('', "Website Added")
         })
         .catch(function (error) {
           console.log(error);
@@ -136,7 +140,8 @@ class SettingsForm extends React.Component {
     //Remove website info from database based on the id given in removeBlacklistedWebsite
     //Update display table
     if (this.state.removeBlacklistedWebsite === "") {
-      alert("Please Enter a ID");
+      smalltalk
+        .alert('', "Please Enter a ID")
     } else {
       console.log(localStorage.getItem("studentId"));
       console.log(this.state.removeBlacklistedWebsite);
@@ -150,7 +155,8 @@ class SettingsForm extends React.Component {
         })
         .then(function (response) {
           this.setState({ removeBlacklistedWebsite: "" });
-          alert("Website Removed");
+          smalltalk
+        .alert('', "Website Removed")
         })
         .catch(function (error) {
           console.log(error);

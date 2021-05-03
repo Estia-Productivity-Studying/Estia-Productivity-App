@@ -1,5 +1,6 @@
 import React from "react";
 import "./css/notepad.css";
+const smalltalk = require('smalltalk');
 
 class Notepad extends React.Component {
   saveTextAsFile() {
@@ -27,7 +28,8 @@ class Notepad extends React.Component {
       };
       fileReader.readAsText(fileToLoad, "UTF-8");
     } else {
-      alert("Please Select a File.");
+      smalltalk
+        .alert('Error', "Please Select a File.")
     }
   }
 
