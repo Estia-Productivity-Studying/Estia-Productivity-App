@@ -61,7 +61,7 @@ function logout(props) {
 
 export default function SimpleTabs() {
   const classes = useStyles();
-  const [selectedTab, setSelectedTab] = React.useState(0);
+  const [selectedTab, setSelectedTab] = React.useState(6);
   const [isLoggedIn, setisLoggedIn] = React.useState(
     localStorage.getItem("jwt") == null ? false : true
   );
@@ -113,7 +113,11 @@ export default function SimpleTabs() {
       <TabContainer id={5} active={selectedTab === 5}>
         <SettingsPage />
       </TabContainer>
-      <TabContainer id={6} active={selectedTab === 6} onClick={() => logout(this.props)}>
+      <TabContainer
+        id={6}
+        active={selectedTab === 6}
+        onClick={() => logout(this.props)}
+      >
         <MainMenu dataToMenu={isLoggedIn} data2ToMenu={setisLoggedIn} />
       </TabContainer>
     </div>

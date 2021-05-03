@@ -92,7 +92,7 @@ class SettingsForm extends React.Component {
     event.preventDefault();
   }
 
-  handleAddWebsite=(event)=>{
+  handleAddWebsite = (event) => {
     //Add website info to database with addBlacklistedWebsiteID as the key for addBlacklistedWebsiteURL
     //Update display table
     if (this.state.addBlacklistedWebsiteURL === "") {
@@ -107,16 +107,16 @@ class SettingsForm extends React.Component {
           },
           { headers: headers }
         )
-        .then(response =>{
+        .then((response) => {
           this.setState({ addBlacklistedWebsiteURL: "" });
           smalltalk.alert("", "Website Added");
         })
-        .catch(error=>{
+        .catch((error) => {
           console.log(error);
         });
     }
     event.preventDefault();
-  }
+  };
 
   handleRemoveWebsite(event) {
     //Remove website info from database based on the id given in removeBlacklistedWebsite
@@ -134,11 +134,22 @@ class SettingsForm extends React.Component {
             studentId: localStorage.getItem("studentId"),
           },
         })
-        .then(response =>{
+        .then((response) => {
           this.setState({ removeBlacklistedWebsite: "" });
           smalltalk.alert("", "Website Removed");
+          var databaseBlacklist = response.data.blacklistedSites;
+          var blacklist = [];
+          for (var i = 0; i < databaseBlacklist.length; i++) {
+            blacklist.push(
+              databaseBlacklist[i].id,
+              databaseBlacklist[i].website
+            );
+          }
+          localStorage.setItem("blacklist", JSON.stringify(blacklist));
+          this.count = 0;
+          this.createTableData();
         })
-        .catch(error=>{
+        .catch((error) => {
           console.log(error);
         });
     }
@@ -272,7 +283,12 @@ class SettingsForm extends React.Component {
         </button> */}
         <br />
         <br />
-        <input id="button" type="submit" value="Save Changes" />
+        <input
+          id="button"
+          type="button"
+          value="Save Changes"
+          onClick={this.handleSubmit}
+        />
       </form>
     );
   }
