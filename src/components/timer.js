@@ -3,8 +3,9 @@ import PauseIcon from "@material-ui/icons/Pause";
 import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
 import RotateLeftRoundedIcon from "@material-ui/icons/RotateLeftRounded";
 import "./css/timer.css";
+const smalltalk = require('smalltalk');
 
-const studyTimer = localStorage.getItem("studylength");
+const studyTimer = 0.1 //localStorage.getItem("studylength");
 
 class Timer extends React.Component {
   constructor() {
@@ -64,6 +65,7 @@ class Timer extends React.Component {
     });
     const element = document.getElementById("outer-circle");
     element.classList.add("animation-bg");
+    localStorage.setItem('timer', this.currentTimer);
   }
 
   countDown() {
@@ -77,7 +79,8 @@ class Timer extends React.Component {
     if (seconds === 0) {
       //If timer hits 0, switch to the next timer mode and restart timer at given time
       if (this.currentTimer === "Study Timer") {
-        alert("Study Time Ended. Starting Break Timer.");
+        smalltalk
+        .alert('Study Time Ended.', ' Starting Break Timer.')
         this.currentTimer = "Break Timer";
         this.setState({
           time: this.secondsToTime(seconds),
@@ -85,7 +88,8 @@ class Timer extends React.Component {
         });
         localStorage.setItem('timer', this.currentTimer);
       } else {
-        alert("Break Time Ended. Starting Study Timer.");
+        smalltalk
+        .alert('Break Time Ended.', ' Starting Study Timer.')
         this.currentTimer = "Study Timer";
         this.setState({
           time: this.secondsToTime(seconds),

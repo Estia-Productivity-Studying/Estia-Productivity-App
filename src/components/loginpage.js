@@ -17,6 +17,7 @@ import "./css/loginpage.css";
 import { leaveSplash } from "../index";
 import Estialogo from "../assets/Estialogo.png";
 import { updateBlacklist } from "./browser";
+const smalltalk = require('smalltalk');
 
 import axios from "axios";
 
@@ -115,7 +116,8 @@ export default function LoginPage(props) {
         password: password,
       })
       .then(function (response) {
-        alert("Signup successful! Welcome " + username + "!");
+        smalltalk
+          .alert("Signup successful!", "Welcome " + username + "!")
       })
       .catch(function (error) {
         console.log(error);
@@ -149,13 +151,26 @@ export default function LoginPage(props) {
         var databaseBlacklist = response.data.student.blacklistedSites
         var blacklist = []
         for (var i = 0; i < databaseBlacklist.length; i++) {
-          blacklist.push(databaseBlacklist[i].website);
+          blacklist.push(databaseBlacklist[i].id, databaseBlacklist[i].website);
         }
-        localStorage.setItem("blacklist", blacklist)
+        localStorage.setItem("blacklist", JSON.stringify(blacklist))
+
+        var databaseCalendar = response.data.student.calendarEvents
+        var calendar = []
+        for (var i = 0; i < databaseCalendar.length; i++) {
+          calendar.push(databaseCalendar[i].id, 
+                        databaseCalendar[i].title, 
+                        databaseCalendar[i].timeStart, 
+                        databaseCalendar[i].timeEnd,
+                        databaseCalendar[i].note);
+        }
+        localStorage.setItem("calendar", JSON.stringify(calendar))
+
       })
       .catch(function (error) {
         console.log(error);
-        alert("Invalid Username or Password");
+        smalltalk
+          .alert("ERROR:", "Invalid Username or Password")
       });
   };
 

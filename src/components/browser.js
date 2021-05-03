@@ -47,13 +47,13 @@ class BrowserWindow extends React.Component {
   // function to handle you press enter on the search bar
   load_url(event) {
     this.updateBlacklist()
-    console.log(event.target.value)
-    console.log(this.getBlacklist())
     //checks if key pressed is enter, if so checks for valid url that's not in blacklist
     //if everything looks goo then loads the url with webview
     if (event.key === "Enter") {
+      console.log(localStorage.getItem('timer'))
       if (localStorage.getItem('timer') == "Break Timer" ||
-        localStorage.getItem('timer') == "pause" &&
+        localStorage.getItem('timer') == "pause" ||
+        localStorage.getItem('timer') == null &&
         validator.isURL("http://" + event.target.value)
         ) {
         const webview = document.querySelector("webview");
@@ -88,7 +88,11 @@ class BrowserWindow extends React.Component {
   }
 
   updateBlacklist=()=>{
-    this.setState({ blacklist: localStorage.getItem('blacklist') })
+    this.setState({blacklist: []});
+    let blacklistArray = JSON.parse(localStorage.getItem('blacklist'))
+    for (let i = 1; i < blacklistArray.length; i += 2) {
+      this.state.blacklist.push(blacklistArray[i])
+    }
   }
 
   render() {
