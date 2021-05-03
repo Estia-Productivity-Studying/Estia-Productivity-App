@@ -28,12 +28,6 @@ class Menu extends React.Component {
         >
           LOGOUT
         </Link>
-        <div class="split right">
-          <div class="centered">
-            <h2>Mini Calendar</h2>
-            <p>Only shows next week or 2</p>
-          </div>
-        </div>
       </div>
     );
   }

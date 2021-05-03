@@ -5,7 +5,7 @@ import RotateLeftRoundedIcon from "@material-ui/icons/RotateLeftRounded";
 import "./css/timer.css";
 const smalltalk = require('smalltalk');
 
-const studyTimer = 0.1 //localStorage.getItem("studylength");
+const studyTimer = 0.5 //localStorage.getItem("studylength");
 
 class Timer extends React.Component {
   constructor() {

@@ -33,7 +33,7 @@ class CalendarPage extends React.Component {
         const title = value
         this.setState({
           events: [
-            ...this.state.events,
+            //...this.state.events,
             {
               start,
               end,
@@ -79,8 +79,18 @@ class CalendarPage extends React.Component {
           console.log('ERROR: smalltalk failed on deleting event');
       });
   }
+
+  update_calendar=()=>{
+    //this.setState({calendar: []});
+    let calendarArray = JSON.parse(localStorage.getItem('calendar'))
+    // for (let i = 1; i < calendarArray.length; i += 1) {
+    //   this.state.calendar.push(calendarArray[i])
+    // }
+    console.log(calendarArray)
+  }
   
   render() {
+    this.update_calendar();
     return (
       <div
         style={{ display: 'flex', height: '100%' }}
