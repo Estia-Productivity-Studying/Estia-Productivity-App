@@ -158,11 +158,12 @@ export default function LoginPage(props) {
         var databaseCalendar = response.data.student.calendarEvents
         var calendar = []
         for (var i = 0; i < databaseCalendar.length; i++) {
-          calendar[i].push([databaseCalendar[i].id, 
+          calendar.push([]);
+          calendar[i].push(databaseCalendar[i].id, 
                         databaseCalendar[i].title, 
                         databaseCalendar[i].timeStart, 
                         databaseCalendar[i].timeEnd,
-                        databaseCalendar[i].note]);
+                        databaseCalendar[i].note);
         }
         localStorage.setItem("calendar", JSON.stringify(calendar))
 
