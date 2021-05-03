@@ -3,10 +3,15 @@ import { Calendar, momentLocalizer, Views } from "react-big-calendar";
 import events from './events'
 import ExampleControlSlot from './ExampleControlSlot'
 import moment from 'moment';
+import axios from "axios";
 
 import "../App.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "react-big-calendar/lib/css/react-big-calendar.css";
+
+const headers = {
+  Authorization: "Bearer " + localStorage.getItem("jwt"),
+};
 
 const smalltalk = require('smalltalk');
 
@@ -36,6 +41,23 @@ class CalendarPage extends React.Component {
             },
           ],
         })
+        axios
+        .post(
+          "http://localhost:8080/calendar/add",
+          {
+            studentId: localStorage.getItem("studentId"),
+            title: title,
+            timeStart: (start.valueOf()/1000).toString(),
+            timeEnd: (end.valueOf()/1000).toString(),
+          },
+          { headers: headers }
+        )
+        .then(function (response) {
+          console.log("Website Added");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
       })
       .catch(() => {
           console.log('error with smalltalk in calendar.js');
