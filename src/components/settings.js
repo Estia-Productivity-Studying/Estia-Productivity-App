@@ -1,59 +1,12 @@
 import React from "react";
 import "./css/settings.css";
 import axios from "axios";
-const smalltalk = require('smalltalk');
+import { Paper } from "material-ui";
+const smalltalk = require("smalltalk");
 
 const headers = {
   Authorization: "Bearer " + localStorage.getItem("jwt"),
 };
-
-class BlacklistedTable extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      // blacklistedWebsites: localStorage.getItem("blacklist"),
-      blacklistedWebsites: [
-        //Get blacklisted websites from database
-        { id: "Instagram", URL: "http://instagram.com" },
-        { id: "Twitter", URL: "http://twitter.com" },
-        { id: "Youtube", URL: "http://youtube.com" },
-      ],
-    };
-  }
-
-  renderTableData() {
-    return this.state.blacklistedWebsites.map((blacklistedWebsite, index) => {
-      const { id, URL } = blacklistedWebsite; //destructuring
-      return (
-        <tr key={id}>
-          <td>{id}</td>
-          <td>{URL}</td>
-        </tr>
-      );
-    });
-  }
-
-  renderTableHeader() {
-    let header = Object.keys(this.state.blacklistedWebsites[0]);
-    return header.map((key, index) => {
-      return <th key={index}>{key.toUpperCase()}</th>;
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h3 id="table-title">Blacklisted Websites:</h3>
-        <table id="blacklisted-websites">
-          <tbody>
-            <tr>{this.renderTableHeader()}</tr>
-            {this.renderTableData()}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
 
 function youtube_parser(url) {
   if (url !== "") {
@@ -77,12 +30,44 @@ class SettingsForm extends React.Component {
       youtubeLink: "",
       username: "",
       password: "",
+      blacklist: [],
     };
+    this.count = 0;
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleAddWebsite = this.handleAddWebsite.bind(this);
     this.handleRemoveWebsite = this.handleRemoveWebsite.bind(this);
     this.handleDeleteAccount = this.handleDeleteAccount.bind(this);
+    this.updateBlacklist = this.updateBlacklist.bind(this);
+    this.createTableData = this.createTableData.bind(this);
+  }
+
+  updateBlacklist = () => {
+    let blacklistArray = JSON.parse(localStorage.getItem("blacklist"));
+    if (blacklistArray != null) {
+      for (let i = 0; i < blacklistArray.length; i += 1) {
+        this.state.blacklist.push(blacklistArray[i]);
+      }
+    } else {
+      blacklistArray = ["empty", "empty"];
+    }
+  };
+
+  createTableData() {
+    this.updateBlacklist();
+    if (this.count == 0) {
+      let data = "<table><thead><td>ID</td><td>URL</td></thead>";
+      for (let i = 0; i < this.state.blacklist.length; i += 2) {
+        data += `<tr class="rows"><td>${this.state.blacklist[i]}</td>`;
+        data += `<td>${this.state.blacklist[i + 1]}</td>`;
+        data += "</tr>";
+      }
+      data += "</table>";
+      if (document.getElementById("container") != null) {
+        document.getElementById("container").innerHTML = data;
+        this.count = 1;
+      }
+    }
   }
 
   handleInputChange(event) {
@@ -103,8 +88,7 @@ class SettingsForm extends React.Component {
     let embedId = youtube_parser(this.state.youtubeLink);
     localStorage.setItem("embedId", embedId);
     this.setState({ youtubeLink: "" });
-    smalltalk
-      .alert('Success', 'All Changes Submitted')
+    smalltalk.alert("Success", "All Changes Submitted");
     event.preventDefault();
   }
 
@@ -112,8 +96,7 @@ class SettingsForm extends React.Component {
     //Add website info to database with addBlacklistedWebsiteID as the key for addBlacklistedWebsiteURL
     //Update display table
     if (this.state.addBlacklistedWebsiteURL === "") {
-      smalltalk
-        .alert('', "Please Enter a URL")
+      smalltalk.alert("", "Please Enter a URL");
     } else {
       axios
         .post(
@@ -126,8 +109,7 @@ class SettingsForm extends React.Component {
         )
         .then(function (response) {
           this.setState({ addBlacklistedWebsiteURL: "" });
-          smalltalk
-            .alert('', "Website Added")
+          smalltalk.alert("", "Website Added");
         })
         .catch(function (error) {
           console.log(error);
@@ -140,8 +122,7 @@ class SettingsForm extends React.Component {
     //Remove website info from database based on the id given in removeBlacklistedWebsite
     //Update display table
     if (this.state.removeBlacklistedWebsite === "") {
-      smalltalk
-        .alert('', "Please Enter a ID")
+      smalltalk.alert("", "Please Enter a ID");
     } else {
       console.log(localStorage.getItem("studentId"));
       console.log(this.state.removeBlacklistedWebsite);
@@ -155,8 +136,7 @@ class SettingsForm extends React.Component {
         })
         .then(function (response) {
           this.setState({ removeBlacklistedWebsite: "" });
-          smalltalk
-        .alert('', "Website Removed")
+          smalltalk.alert("", "Website Removed");
         })
         .catch(function (error) {
           console.log(error);
@@ -200,7 +180,9 @@ class SettingsForm extends React.Component {
           />
         </label>
         <br />
-        <BlacklistedTable />
+        <h3 id="table-title">Blacklisted Websites:</h3>
+        <div id="container"></div>
+        {this.createTableData()}
         <h3>Blacklisted Website Settings:</h3>
         <label>
           Add Blacklisted Website:

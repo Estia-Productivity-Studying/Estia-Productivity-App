@@ -19,21 +19,24 @@ function handleClick(props) {
 class Menu extends React.Component {
   render() {
     return (
-      <div>
-        <Link
-          id="login-link"
-          variant="body2"
-          color="secondary"
+      <div class="Menu-page">
+        <div class="Menu-header">Welcome to Estia!</div>
+
+        <button
+          id="button"
+          fullWidth
+          variant="contained"
+          color="primary"
           onClick={() => handleClick(this.props)}
         >
           LOGOUT
-        </Link>
-        <div class="split right">
+        </button>
+        {/* <div class="split right">
           <div class="centered">
             <h2>Mini Calendar</h2>
             <p>Only shows next week or 2</p>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }
