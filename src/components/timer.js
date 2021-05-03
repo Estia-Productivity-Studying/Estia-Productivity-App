@@ -4,17 +4,14 @@ import PlayArrowRoundedIcon from "@material-ui/icons/PlayArrowRounded";
 import RotateLeftRoundedIcon from "@material-ui/icons/RotateLeftRounded";
 import "./css/timer.css";
 
-import study_timer from "./browser"
-
-const studyTimerTime = 1; //Get from database
-const breakTimerTime = 0.5; //Get from database
+const studyTimer = localStorage.getItem("studylength");
 
 class Timer extends React.Component {
   constructor() {
     super();
     this.state = {
       time: {},
-      seconds: studyTimerTime * 60,
+      seconds: studyTimer * 60,
       isOn: false,
       isPaused: false,
     };
@@ -51,7 +48,14 @@ class Timer extends React.Component {
   }
 
   startTimer() {
-    localStorage.setItem('timer', this.currentTimer);
+    this.studyTimerTime =
+      localStorage.getItem("studylength") == null
+        ? 45
+        : localStorage.getItem("studylength");
+    this.breakTimerTime =
+      localStorage.getItem("breaklength") == null
+        ? 15
+        : localStorage.getItem("breaklength");
     this.timer = setInterval(this.countDown, 1000);
     this.setState({
       isOn: true,
@@ -73,17 +77,19 @@ class Timer extends React.Component {
     if (seconds === 0) {
       //If timer hits 0, switch to the next timer mode and restart timer at given time
       if (this.currentTimer === "Study Timer") {
+        alert("Study Time Ended. Starting Break Timer.");
         this.currentTimer = "Break Timer";
         this.setState({
           time: this.secondsToTime(seconds),
-          seconds: breakTimerTime * 60,
+          seconds: this.breakTimerTime * 60,
         });
         localStorage.setItem('timer', this.currentTimer);
       } else {
+        alert("Break Time Ended. Starting Study Timer.");
         this.currentTimer = "Study Timer";
         this.setState({
           time: this.secondsToTime(seconds),
-          seconds: studyTimerTime * 60,
+          seconds: this.studyTimerTime * 60,
         });
         localStorage.setItem('timer', this.currentTimer);
       }
@@ -106,7 +112,7 @@ class Timer extends React.Component {
     this.setState({ time: 0, isOn: false, isPaused: false });
     this.currentTimer = "Study Timer";
     this.setState({
-      seconds: studyTimerTime * 60,
+      seconds: this.studyTimerTime * 60,
     });
     clearInterval(this.timer);
   }

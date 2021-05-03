@@ -13,20 +13,23 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Container from "@material-ui/core/Container";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import "./css/loginpage.css";
-import {leaveSplash} from '../index';
-import Estialogo from "../assets/Estialogo.png"
 
-import axios from 'axios';
+import { leaveSplash } from "../index";
+import Estialogo from "../assets/Estialogo.png";
+import { updateBlacklist } from "./browser";
 
-let username = ""
-let password = ""
+import axios from "axios";
+
+let username = "";
+let password = "";
+let jwt = "";
 
 function handleClick(event) {
   console.info("You clicked a breadcrumb.");
 }
 
 function handleSkip(event) {
-  leaveSplash();
+  // leaveSplash();
 }
 
 const CssCheckbox = withStyles({
@@ -102,47 +105,66 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginPage() {
+export default function LoginPage(props) {
   const classes = useStyles();
 
   let signup = () => {
-    axios.post('http://localhost:8080/student/signup', {
-      'username': username, 
-      'password': password
-    })
-    .then(function (response) {
-      alert("Signup successful! Welcome " + username + "!");
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-  }
+    axios
+      .post("http://localhost:8080/student/signup", {
+        username: username,
+        password: password,
+      })
+      .then(function (response) {
+        alert("Signup successful! Welcome " + username + "!");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   let signin = () => {
-    axios.post('http://localhost:8080/student/login', {
-      'username': username, 
-      'password': password
-    })
-    .then(function (response) {
-      var databaseBlacklist = response.data.student.blacklistedSites
-      var blacklist = []
-      for (var i = 0; i < databaseBlacklist.length; i++) {
-        blacklist.push(databaseBlacklist[i].website);
-      }
-      localStorage.setItem("blacklist", blacklist)
-      leaveSplash();
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios
+      .post("http://localhost:8080/student/login", {
+        username: username,
+        password: password,
+      })
+      .then(function (response) {
+        console.log(response.data.jwt);
+        localStorage.setItem("jwt", response.data.jwt);
+        props.data2ToLogin(true);
+        localStorage.setItem("studentId", response.data.student.id);
+        // if (response.data.student.blacklistedSites == "") {
+        //   localStorage.setItem("blacklist", [
+        //     { id: "Instagram", URL: "http://instagram.com" },
+        //     { id: "Twitter", URL: "http://twitter.com" },
+        //     { id: "Youtube", URL: "http://youtube.com" },
+        //   ]);
+        // } else {
+        //   alert("not null");
+        //   localStorage.setItem("blacklist", [
+        //     response.data.student.blacklistedSites,
+        //   ]);
+        // }
+        // leaveSplash();
+        var databaseBlacklist = response.data.student.blacklistedSites
+        var blacklist = []
+        for (var i = 0; i < databaseBlacklist.length; i++) {
+          blacklist.push(databaseBlacklist[i].website);
+        }
+        localStorage.setItem("blacklist", blacklist)
+      })
+      .catch(function (error) {
+        console.log(error);
+        alert("Invalid Username or Password");
+      });
+  };
+
+  function usernameChange(event) {
+    username = event.target.value;
   }
 
-  function usernameChange(event){
-    username = event.target.value
-  }
-
-  function passwordChange(event){
-    password = event.target.value
+  function passwordChange(event) {
+    password = event.target.value;
   }
 
   return (

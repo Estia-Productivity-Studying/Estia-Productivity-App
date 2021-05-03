@@ -6,7 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import { useMemo } from "react";
-
+import { useEffect } from "react";
 import LoginPage from "./components/loginpage";
 import BrowserPage from "./components/browser";
 import CalendarPage from "./components/calendar";
@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const useTabContainerStyles = makeStyles((theme) =>
   createStyles({
-    root: {
-    },
+    root: {},
     tabcontainerInActive: {
       display: "none",
     },
@@ -41,7 +40,7 @@ function TabContainer(props) {
   console.log("In TabContainer");
   return (
     <Typography
-      style={{ flex: '1'}}
+      style={{ flex: "1" }}
       id={props.id.toString()}
       component="div"
       className={
@@ -59,13 +58,20 @@ function TabContainer(props) {
 export default function SimpleTabs() {
   const classes = useStyles();
   const [selectedTab, setSelectedTab] = React.useState(0);
+  const [isLoggedIn, setisLoggedIn] = React.useState(
+    localStorage.getItem("jwt") == null ? false : true
+  );
 
   function handleChange(event, newSelectedTab) {
     setSelectedTab(newSelectedTab);
   }
 
-  return (
-    <div class='wrapper'>
+  // useEffect(() => {
+  //   localStorage.clear();
+  // });
+
+  let loggedInPage = (
+    <div class="wrapper">
       <AppBar position="static" color="inherit">
         <Tabs
           value={selectedTab}
@@ -77,7 +83,7 @@ export default function SimpleTabs() {
         >
           <Tab label="Main Menu" />
           <Tab label="Browser" />
-          <Tab label="Calendar"/>
+          <Tab label="Calendar" />
           <Tab label="Music" />
           <Tab label="Notepad" />
           <Tab label="Timer" />
@@ -86,10 +92,10 @@ export default function SimpleTabs() {
       </AppBar>
 
       <TabContainer id={0} active={selectedTab === 0}>
-        <MainMenu />
+        <MainMenu dataToMenu={isLoggedIn} data2ToMenu={setisLoggedIn} />
       </TabContainer>
       <TabContainer id={0} active={selectedTab === 1}>
-        <BrowserPage/>
+        <BrowserPage />
       </TabContainer>
       <TabContainer id={1} active={selectedTab === 2}>
         <CalendarPage />
@@ -106,6 +112,16 @@ export default function SimpleTabs() {
       <TabContainer id={5} active={selectedTab === 6}>
         <SettingsPage />
       </TabContainer>
+    </div>
+  );
+
+  return (
+    <div class="wrapper">
+      {isLoggedIn ? (
+        loggedInPage
+      ) : (
+        <LoginPage dataToLogin={isLoggedIn} data2ToLogin={setisLoggedIn} />
+      )}
     </div>
   );
 }

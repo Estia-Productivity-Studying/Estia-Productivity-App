@@ -1,11 +1,16 @@
 import React from "react";
 import "./css/settings.css";
-import axios from 'axios';
+import axios from "axios";
+
+const headers = {
+  Authorization: "Bearer " + localStorage.getItem("jwt"),
+};
 
 class BlacklistedTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // blacklistedWebsites: localStorage.getItem("blacklist"),
       blacklistedWebsites: [
         //Get blacklisted websites from database
         { id: "Instagram", URL: "http://instagram.com" },
@@ -49,6 +54,16 @@ class BlacklistedTable extends React.Component {
   }
 }
 
+function youtube_parser(url) {
+  if (url !== "") {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+    var match = url.match(regExp);
+    return match && match[7].length === 11 ? match[7] : false;
+  } else {
+    return "";
+  }
+}
+
 class SettingsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +71,6 @@ class SettingsForm extends React.Component {
       //Get current settings from database
       studyTimerLength: 60,
       breakTimerLength: 15,
-      addBlacklistedWebsiteID: "",
       addBlacklistedWebsiteURL: "",
       removeBlacklistedWebsite: "",
       youtubeLink: "",
@@ -64,6 +78,10 @@ class SettingsForm extends React.Component {
       password: "",
     };
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleAddWebsite = this.handleAddWebsite.bind(this);
+    this.handleRemoveWebsite = this.handleRemoveWebsite.bind(this);
+    this.handleDeleteAccount = this.handleDeleteAccount.bind(this);
   }
 
   handleInputChange(event) {
@@ -79,34 +97,65 @@ class SettingsForm extends React.Component {
   handleSubmit(event) {
     //Handles when the user wants to save all changes made to the settings.
     //Send all updated settings to the database
-    alert("Timer Settings Saved");
+    localStorage.setItem("studylength", this.state.studyTimerLength);
+    localStorage.setItem("breaklength", this.state.breakTimerLength);
+    let embedId = youtube_parser(this.state.youtubeLink);
+    localStorage.setItem("embedId", embedId);
+    this.setState({ youtubeLink: "" });
+    alert("All Changes Submitted");
     event.preventDefault();
   }
 
   handleAddWebsite(event) {
     //Add website info to database with addBlacklistedWebsiteID as the key for addBlacklistedWebsiteURL
     //Update display table
-
-    // axios.post('http://localhost:8080/blacklist/add', {
-    //   siteId: '123',
-    //   studentId: '123',
-    //   website: 'twitch.tv'
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
-    
-    alert("Website Added");
+    if (this.state.addBlacklistedWebsiteURL === "") {
+      alert("Please Enter a URL");
+    } else {
+      axios
+        .post(
+          "http://localhost:8080/blacklist/add",
+          {
+            studentId: localStorage.getItem("studentId"),
+            website: this.state.addBlacklistedWebsiteURL,
+          },
+          { headers: headers }
+        )
+        .then(function (response) {
+          this.setState({ addBlacklistedWebsiteURL: "" });
+          alert("Website Added");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
     event.preventDefault();
   }
 
   handleRemoveWebsite(event) {
     //Remove website info from database based on the id given in removeBlacklistedWebsite
     //Update display table
-    alert("Website Removed");
+    if (this.state.removeBlacklistedWebsite === "") {
+      alert("Please Enter a ID");
+    } else {
+      console.log(localStorage.getItem("studentId"));
+      console.log(this.state.removeBlacklistedWebsite);
+      axios
+        .delete("http://localhost:8080/blacklist/delete", {
+          headers: headers,
+          data: {
+            siteId: parseInt(this.state.removeBlacklistedWebsite),
+            studentId: localStorage.getItem("studentId"),
+          },
+        })
+        .then(function (response) {
+          this.setState({ removeBlacklistedWebsite: "" });
+          alert("Website Removed");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
     event.preventDefault();
   }
 
@@ -150,7 +199,7 @@ class SettingsForm extends React.Component {
         <label>
           Add Blacklisted Website:
           <br />
-          <label>Website Name:</label>
+          {/* <label>Website Name:</label>
           <input
             id="settings-input"
             name="addBlacklistedWebsiteID"
@@ -159,7 +208,7 @@ class SettingsForm extends React.Component {
             value={this.state.addBlacklistedWebsiteID}
             onChange={this.handleInputChange}
           />
-          <br />
+          <br /> */}
           <label>Website URL:</label>
           <input
             id="settings-input"
@@ -178,12 +227,12 @@ class SettingsForm extends React.Component {
         <label>
           Remove Blacklisted Website:
           <br />
-          <label>Website Name:</label>
+          <label>Website ID:</label>
           <input
             id="settings-input"
             name="removeBlacklistedWebsite"
             type="text"
-            placeholder="Ex: Instagram"
+            placeholder="Ex: 3"
             value={this.state.removeBlacklistedWebsite}
             onChange={this.handleInputChange}
           />
@@ -205,7 +254,7 @@ class SettingsForm extends React.Component {
           />
           <br />
         </label>
-        <h3>Account Settings:</h3>
+        {/* <h3>Account Settings:</h3>
         <label>
           Change Username:
           <input
@@ -232,7 +281,7 @@ class SettingsForm extends React.Component {
         </label>
         <button id="button" type="button" onClick={this.handleDeleteAccount}>
           Delete Account
-        </button>
+        </button> */}
         <br />
         <br />
         <input id="button" type="submit" value="Save Changes" />
