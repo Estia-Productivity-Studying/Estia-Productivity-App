@@ -37,7 +37,6 @@ const useTabContainerStyles = makeStyles((theme) =>
 
 function TabContainer(props) {
   const styles = useTabContainerStyles({});
-  console.log("In TabContainer");
   return (
     <Typography
       style={{ flex: "1" }}
@@ -53,6 +52,11 @@ function TabContainer(props) {
       {props.children}
     </Typography>
   );
+}
+
+function logout(props) {
+  props.data2ToMenu(false);
+  localStorage.clear();
 }
 
 export default function SimpleTabs() {
@@ -81,36 +85,36 @@ export default function SimpleTabs() {
             indicator: classes.indicator,
           }}
         >
-          <Tab label="Main Menu" />
           <Tab label="Browser" />
           <Tab label="Calendar" />
           <Tab label="Music" />
           <Tab label="Notepad" />
           <Tab label="Timer" />
           <Tab label="Settings" />
+          <Tab label="Logout" />
         </Tabs>
       </AppBar>
 
       <TabContainer id={0} active={selectedTab === 0}>
-        <MainMenu dataToMenu={isLoggedIn} data2ToMenu={setisLoggedIn} />
-      </TabContainer>
-      <TabContainer id={0} active={selectedTab === 1}>
         <BrowserPage />
       </TabContainer>
-      <TabContainer id={1} active={selectedTab === 2}>
+      <TabContainer id={1} active={selectedTab === 1}>
         <CalendarPage />
       </TabContainer>
-      <TabContainer id={2} active={selectedTab === 3}>
+      <TabContainer id={2} active={selectedTab === 2}>
         <MusicPage />
       </TabContainer>
-      <TabContainer id={3} active={selectedTab === 4}>
+      <TabContainer id={3} active={selectedTab === 3}>
         <NotepadPage />
       </TabContainer>
-      <TabContainer id={4} active={selectedTab === 5}>
+      <TabContainer id={4} active={selectedTab === 4}>
         <TimerPage />
       </TabContainer>
-      <TabContainer id={5} active={selectedTab === 6}>
+      <TabContainer id={5} active={selectedTab === 5}>
         <SettingsPage />
+      </TabContainer>
+      <TabContainer id={6} active={selectedTab === 6} onClick={() => logout(this.props)}>
+        <MainMenu dataToMenu={isLoggedIn} data2ToMenu={setisLoggedIn} />
       </TabContainer>
     </div>
   );
