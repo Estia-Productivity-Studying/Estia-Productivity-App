@@ -157,7 +157,8 @@ export default function LoginPage(props) {
         var databaseCalendar = response.data.student.calendarEvents;
         var calendar = [];
         for (var i = 0; i < databaseCalendar.length; i++) {
-          calendar.push(
+          calendar.push([]);
+          calendar[i].push(
             databaseCalendar[i].id,
             databaseCalendar[i].title,
             databaseCalendar[i].timeStart,
@@ -231,24 +232,15 @@ export default function LoginPage(props) {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link id="login-link" href="#" variant="body2">
-                  Forgot password?
-                </Link>
+                <Button id="login-link" href="#" variant="body2">
+                  <text>Forgot Password?</text>
+                </Button>
               </Grid>
               <Grid item xs>
                 <Button id="login-link" variant="body2" onClick={signup}>
                   <text>Sign Up</text>
                 </Button>
               </Grid>
-
-              <Link
-                id="login-link"
-                variant="body2"
-                color="secondary"
-                onClick={handleSkip}
-              >
-                CLICK HERE TO SKIP
-              </Link>
             </Grid>
           </form>
         </div>

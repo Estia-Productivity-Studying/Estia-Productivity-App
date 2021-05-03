@@ -92,7 +92,7 @@ class SettingsForm extends React.Component {
     event.preventDefault();
   }
 
-  handleAddWebsite(event) {
+  handleAddWebsite=(event)=>{
     //Add website info to database with addBlacklistedWebsiteID as the key for addBlacklistedWebsiteURL
     //Update display table
     if (this.state.addBlacklistedWebsiteURL === "") {
@@ -107,11 +107,11 @@ class SettingsForm extends React.Component {
           },
           { headers: headers }
         )
-        .then(function (response) {
+        .then(response =>{
           this.setState({ addBlacklistedWebsiteURL: "" });
           smalltalk.alert("", "Website Added");
         })
-        .catch(function (error) {
+        .catch(error=>{
           console.log(error);
         });
     }
@@ -134,11 +134,11 @@ class SettingsForm extends React.Component {
             studentId: localStorage.getItem("studentId"),
           },
         })
-        .then(function (response) {
+        .then(response =>{
           this.setState({ removeBlacklistedWebsite: "" });
           smalltalk.alert("", "Website Removed");
         })
-        .catch(function (error) {
+        .catch(error=>{
           console.log(error);
         });
     }

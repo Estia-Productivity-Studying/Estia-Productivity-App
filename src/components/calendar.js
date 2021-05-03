@@ -23,6 +23,7 @@ class CalendarPage extends React.Component {
     super(...args)
 
     this.state = { events }
+    this.update_calendar();
   }
 
   handleSelect = ({ start, end }) => {
@@ -52,10 +53,10 @@ class CalendarPage extends React.Component {
           },
           { headers: headers }
         )
-        .then(function (response) {
-          console.log("Website Added");
+        .then(response =>{
+          console.log("Event Added");
         })
-        .catch(function (error) {
+        .catch(response =>{
           console.log(error);
         });
       })
@@ -78,6 +79,25 @@ class CalendarPage extends React.Component {
       .catch(() => {
           console.log('ERROR: smalltalk failed on deleting event');
       });
+  }
+
+  update_calendar=()=>{
+    this.setState({events: []});
+    let calendarArray = JSON.parse(localStorage.getItem('calendar'))
+    console.log(calendarArray)
+    if (calendarArray != null && calendarArray.length){
+    for (let i = 0; i < calendarArray.length; i += 1) {
+      this.state.events.push({
+        id: calendarArray[i][0],
+        title: calendarArray[i][1],
+        allDay: true,
+        start: new Date(calendarArray[i][2]),
+        end: new Date(calendarArray[i][3]),
+      })
+    }
+    console.log(this.state.events)
+    this.forceUpdate()
+    }
   }
   
   render() {
