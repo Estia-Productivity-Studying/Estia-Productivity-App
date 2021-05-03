@@ -53,10 +53,10 @@ class CalendarPage extends React.Component {
           },
           { headers: headers }
         )
-        .then(function (response) {
-          console.log("Website Added");
+        .then(response =>{
+          console.log("Event Added");
         })
-        .catch(function (error) {
+        .catch(response =>{
           console.log(error);
         });
       })
